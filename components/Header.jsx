@@ -59,7 +59,7 @@ export default function Header({ children }) {
           <Container>
             <Title>
               <Link href="/" passHref>
-                <TitleLink>Diego Hernandez</TitleLink>
+                <TitleLink>Nic Moe</TitleLink>
               </Link>
             </Title>
             {children && <div>{children}</div>}

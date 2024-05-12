@@ -47,14 +47,15 @@ export default function Footer() {
     <LayoutContainer backgroundColor={theme.bg03} padding="1rem 1.5rem">
       <Container>
         <Copyright>
+          Handcrafted by{' '}
           <StyledLink
             href={pgk.repository.url}
             target="_blank"
             rel="noreferrer"
           >
-            Handcrafted
-          </StyledLink>{' '}
-          by me, {new Date().getFullYear()}
+            Diego Hernandez
+          </StyledLink>
+          , {new Date().getFullYear()}
         </Copyright>
         <Contact>
           <StyledLink

@@ -45,9 +45,9 @@ export default function Hero() {
     <LayoutContainer backgroundColor={theme.bg03}>
       <Container>
         <Hello>
-          Hello, my name is <Name>Diego Hernandez</Name>
+          Hello, my name is <Name>Nic Moe</Name>
         </Hello>
-        <Tagline>I code and design to make the world a better place.</Tagline>
+        <Tagline>I do data stuff</Tagline>
         <Navigation>
           <NavigationItem>
             <Link href="/projects" passHref>
