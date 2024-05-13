@@ -1,0 +1,56 @@
+---
+name: Bee swarm for distributions
+type: project
+description: Bee swarm for distributions
+color: '#161616'
+
+tags:
+  - Project
+  - Distributions
+  - Postgres
+  - Django
+  - Vue
+  - d3.js
+
+thumbnail: bee-swarm-1.png
+
+imgs:
+  - bee-swarm-1.png
+  - bee-swarm-2.png
+---
+
+## Context
+
+User story: As a supply chain user, I want to understand distributions of surgical case costs. This could include how many surgical cases use a given product, how much those cases cost in total, how varied those costs per case are, what a “typical” case looks like, and what outliers look like. I want to understand both the general patterns as well as be able to dig into details of specific cases.
+
+Business context: Our clients need to be able to quickly understand how their sourced devices are being used. And we want pretty analytical visuals that help with marketing and sales.
+
+## My role
+
+## Process
+
+There are many ways to visualize and compare distributions, typically bar charts and histograms. However, when data points are discrete, on a continuous scale, and make up a reasonable total, one relatively intuitive chart type is the bee swarm chart. I designed the original bee swarm chart, got feedback from multiple humans on its interpretability, and worked with my team to componentize it.
+
+## Solution
+
+The original bee swarm included a blue dot representing each surgical case using a given product, space along the x-axis representing total costs per case (for all products utilized in a surgical case). We added labeled,vertical lines to represent the median value, and 10th and 90th percentile lines for dispersed distributions. I worked with my product team on this design and later added tooltips with case details (which I later replaced by a more detailed pop up modal). Other numerical data fields, such as OR time and length of stay, were added as options for the x-axis so a user could see distributions across cases for those values. Later, we added features permitting users to highlight certain cases, such as those performed by a particular surgeon, and compare the distribution of highlighted cases against those which are not in the selected set.
+
+## Outcome
+
+I later found other features that could make use of the bee swarm component, for users to see and understand data distributions of other data sets. Because of its visual appeal, it’s been used extensively in marketing materials for the software.
+
+## Insights
+
+Lots of experience thinking of how to communicate distributions (and distribution comparison) to non-technical users. Gained experience visualizing scatterplots with d3.js, front end performance improvements with web workers, componentization in Vue, asynchronous querying using jwt.
+
+Through user testing, I discovered that people sometimes need a bit of direction (in the form of descriptive text and other visual indicators) to know how to use an interactive tool or to understand what an unfamiliar chart type represents.
+
+This was a good exercise in learning that beauty and ease of use doesn’t make data transparency inherently actionable. Even for users who could interpret the distributions of case costs for surgical cases using a given product, they didn’t know what to do with that information without a ton of extra detail that we eventually added in the form of tooltips and popup modals.
+
+## What I would do differently next time
+
+Rendering bee swarm charts can become slow on the front end if there are thousands of items -> one of my colleagues set up parallel threads using web workers.
+
+With certain distributions it’s hard to identify what “typical” or “outlier” means -> we added a median line, and when they differed considerably from the median, 10th and 90th percentile lines
+
+Bee swarm charts with thousands of items (surgical cases) can be difficult for a user to dig into -> a colleague set up an alternate density distribution chart that rendered by default; eventually, we made it so that users could jump back and forth between the two ways of visualizing distributions; we found that a good breakpoint based on usability and performance was about 750 bees, so anything above that count rendered as the density chart instead.
