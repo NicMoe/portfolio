@@ -1,0 +1,63 @@
+---
+name: Outcomes analyses feature
+type: project
+description: How to define and communicate statistical vs. clinical significance; used to prioritize clinical initiatives based on impact and cost-effectiveness
+color: '#161616'
+
+tags:
+  - Project
+  - Postgres
+  - Django
+  - Vue
+  - Pandas
+  - SciPy
+  - d3.js
+
+thumbnail: charrette-activity.png
+
+imgs:
+  - charrette-activity.png
+  - charrette-postits-loop.png
+  - charrette-postits.png
+---
+
+## Context
+
+User story: As a supply chain professional, I want to make sure our medical device contracting is aligned with both financial prudency and clinical needs. To accomplish certain contracting needs, such as hitting volume commitment targets or consolidating sourcing to a smaller set of vendors, I need buy-in from clinical partners who trust that these initiatives do not have any negative impact on patient health outcomes.
+
+Business need: Hospital governance determines who within an organization makes decisions such as which medical devices are supplied to patients. With supply chain teams being our primary user base and purchaser, we need to give them appropriate data to effectively partner with their clinical teams on sourcing initiatives.
+
+Existing data context: We had hospital data related to what devices were purchased, product data on their distinguishing attributes, and clinical data relating to surgical cases including what devices were used and various patient outcomes. As well, our team of medical device experts had written “evidence insights” based off existing research that shared when
+
+## My role
+
+## Process
+
+I integrated the product attribute data and surgical case data into a unified schema that allowed for comparing surgical cases that used products with a given attribute against cases using products with a different attribute. For example, given different attributes for various impact devices, how do surgical cases differ in patients’ length of hospital stay? And how does any difference appearing in a given clients’ data relate to what we’d expect based on available peer reviewed research?
+
+Several challenges were that (1) we had no data structure that encoded expected relationships between attribute and outcome, (2) while we had patient attributes such as diagnosis and billing codes, we had no other information to help ascertain physicians’ reasons to choose one product over another, (3) there was no definition of clinical significance (as opposed to statistical significance) and (4) running statistical tests across multiple associations simultaneously and automatically refreshing those each time the data updates is…sus.
+
+For expected relationships between attribute and outcome, I worked with our content expert team to determine which attribute/outcome associations were best supported by the literature and what direction those associations went. We determined a priority list and I set up a table in the database.
+
+For physician reasons that might explain why a product with a given attribute would be used over another, we had no data. 🤷
+For defining clinical significance, I had access to medical device experts, clinical experts, and hospital supply chain experts. While there were potentially thousands of product attributes of interest, we were working with a smaller set of initial clinical outcomes so I could interview these experts about what matters for those. And I learned many important facts. For example, time that a patient is in the operating room (OR) is both associated with surgical complexity and also with subsequent infection rate; and from an administrative point of view, longer OR times lead to fewer patients getting their operation within a given day. So understanding if a particular device attribute is associated with longer OR times is a critical part of a supply chain team and their clinical partners understanding how switching devices could affect individual patients, patient cohorts, and business operations.
+
+And let’s say that we’re comparing these two groups and discover that, on average, they differ by 5 minutes, which might even be “statistically significant”. Is it clinically significant?
+
+## Solution
+
+For each data type, I decided the best option is to both run a statistical test and use a rules set related to defined clinical significance to determine if the groups are different. If it’s true for either, display a message saying that there may be a real difference between the groups worth digging into with their clinical team. If neither is true, display a message stating that there’s no significant difference detected in the data. And the data itself is visualized at the patient cohort level along with an option for users to dig into the data themselves.
+
+## Outcome
+
+We shipped the feature for the product attribute comparisons identified as most impactful by the research team. The result was administrative users being able to have more transparency into their clinical data and be able to more accurately assess these with their clinical counterparts.
+
+## Insights
+
+I learned a ton about schema integration, Pandas and SciPy, how to think about non-statistical significance, and how to communicate statistical model outputs to a non-technical audience.
+
+Learnings / key takeaways / what I would do differently next time
+
+Including content experts in defining significance was crucial to this project. Given more resources, I would have loved to provide these client data comparisons to our research team to help them in the evidence insights creation process. And I would have loved to dig more into the data model to determine ways to expand the analyses beyond identifying associations into more causal questions (if a given patient was given a different device, how might that have affected their outcome?).
+
+## What I would do differently next time
