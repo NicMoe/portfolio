@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import ImageCarrousel from '../components/ImageCarrousel'
+import ImageCarrossel from '../components/ImageCarrossel'
 import LayoutContainer from '../components/LayoutContainer'
 import StyledLink from '../components/StyledLink'
 import TitledContent from '../components/TitledContent'
@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <LayoutContainer narrow>
       <TitledContent heading="Hi there, nice to meet you!">
-        <ImageCarrousel
+        <ImageCarrossel
           images={[`/me-0${Math.floor(Math.random() * 7) + 1}.jpeg`]}
         />
         <p>
