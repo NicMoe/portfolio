@@ -47,7 +47,7 @@ export default function Footer() {
     <LayoutContainer backgroundColor={theme.bg03} padding="1rem 1.5rem">
       <Container>
         <Copyright>
-          Handcrafted by{' '}
+          Site by{' '}
           <StyledLink
             href={pgk.repository.url}
             target="_blank"
@@ -59,25 +59,32 @@ export default function Footer() {
         </Copyright>
         <Contact>
           <StyledLink
-            href="https://www.linkedin.com/in/diegoahernandez/"
+            href="https://www.linkedin.com/in/nicwillmoe/"
             target="_blank"
             rel="noreferrer"
           >
             LinkedIn
           </StyledLink>{' '}
           <StyledLink
-            href="https://github.com/diego-codes/"
+            href="https://github.com/NicMoe/"
             target="_blank"
             rel="noreferrer"
           >
             GitHub
           </StyledLink>{' '}
           <StyledLink
-            href="https://twitter.com/diego_codes"
+            href="https://www.instagram.com/nicwillmoe/"
             target="_blank"
             rel="noreferrer"
           >
-            Twitter
+            Instagram
+          </StyledLink>{' '}
+          <StyledLink
+            href="https://bsky.app/profile/nicmoe.bsky.social"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Bluesky
           </StyledLink>
         </Contact>
       </Container>
