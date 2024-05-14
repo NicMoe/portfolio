@@ -58,6 +58,10 @@ export default function ProjectCardsGrid({
         )
       : projects
 
+  const descendingProjects = filteredProjects.sort((a, b) =>
+    b.slug.localeCompare(a.slug),
+  )
+
   const handleFilterToggle = name => {
     if (selectedFilters.includes(name)) {
       setSelectedFitlers(val => val.filter(filter => filter !== name))
@@ -80,7 +84,7 @@ export default function ProjectCardsGrid({
           </FiltersContainer>
         )}
         <Grid>
-          {filteredProjects.map(project => (
+          {descendingProjects.map(project => (
             <ProjectCard
               key={project.slug}
               id={project.slug}
