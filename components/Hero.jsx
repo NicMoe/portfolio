@@ -47,7 +47,7 @@ export default function Hero() {
         <Hello>
           Hello, my name is <Name>Nic Moe</Name>
         </Hello>
-        <Tagline>I do data stuff</Tagline>
+        <Tagline>I help scientists with data science</Tagline>
         <Navigation>
           <NavigationItem>
             <Link href="/projects" passHref>

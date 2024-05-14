@@ -32,43 +32,21 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Diego Hernandez, Engineering &amp; UX portfolio</title>
+          <title>Nic Moe, Data Scientist</title>
           <meta
             name="description"
-            content="I'm a full-stack software engineer living in the worlds of engineering and design, advocating for valuable and accessible user experiences."
+            content="I'm a data scientist working to advance scientific research workflows through data analytics and machine learning."
           />
 
           <meta property="og:url" content="https://www.diegohernandez.dev/" />
           <meta property="og:type" content="website" />
-          <meta
-            property="og:title"
-            content="Diego Hernandez, Engineering &amp; UX portfolio"
-          />
+          <meta property="og:title" content="Nic Moe, Data Scientist" />
           <meta
             property="og:description"
-            content="I'm a full-stack software engineer living in the worlds of engineering and design, advocating for valuable and accessible user experiences."
+            content="I'm a data scientist working to advance scientific research workflows through data analytics and machine learning."
           />
           <meta
             property="og:image"
-            content="https://diegohernandez.dev/_next/image?url=%2Fme-03.jpeg&w=3840&q=75"
-          />
-
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta property="twitter:domain" content="" />
-          <meta
-            property="twitter:url"
-            content="https://www.diegohernandez.dev/"
-          />
-          <meta
-            name="twitter:title"
-            content="Diego Hernandez, Engineering &amp; UX portfolio"
-          />
-          <meta
-            name="twitter:description"
-            content="I'm a full-stack software engineer living in the worlds of engineering and design, advocating for valuable and accessible user experiences. "
-          />
-          <meta
-            name="twitter:image"
             content="https://diegohernandez.dev/_next/image?url=%2Fme-03.jpeg&w=3840&q=75"
           />
 
