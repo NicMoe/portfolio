@@ -1,10 +1,10 @@
 const theme = {
-  bg01: '#76B041',
-  bg02: '#191970',
-  bg03: '#003366',
+  bg01: '#3A7E87',
+  bg02: '#0A1E2F',
+  bg03: '#ED6E38',
   text01: '#F0F6FA',
   text02: '#C1D4E1',
-  primary: '#ffc669',
+  primary: '#62B7BB',
 }
 
 export default theme
