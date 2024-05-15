@@ -8,10 +8,12 @@ export async function getStaticProps() {
 
   return {
     props: {
-      projects: projects.map(({ frontmatter, slug }) => ({
-        ...frontmatter,
-        slug,
-      })),
+      projects: projects
+        .sort((a, b) => b.slug.localeCompare(a.slug))
+        .map(({ frontmatter, slug }) => ({
+          ...frontmatter,
+          slug,
+        })),
     },
   }
 }
