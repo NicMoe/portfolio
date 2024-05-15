@@ -55,7 +55,7 @@ const IndicatorsContainer = styled.div`
 
 const transitionDuration = 5000
 
-export default function ImageCarrossel({ images, backgroundColor }) {
+export default function ImageCarousel({ images, backgroundColor }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const timerRef = useRef(null)
 
@@ -114,12 +114,12 @@ export default function ImageCarrossel({ images, backgroundColor }) {
   )
 }
 
-ImageCarrossel.propTypes = {
+ImageCarousel.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string),
   backgroundColor: PropTypes.string,
 }
 
-ImageCarrossel.defaultProps = {
+ImageCarousel.defaultProps = {
   images: [],
   backgroundColor: undefined,
 }
