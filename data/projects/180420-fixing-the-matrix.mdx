@@ -1,0 +1,135 @@
+---
+name: Fixing the matrix
+type: project
+description: A critique of an algorithm used for public bond funds
+color: '#161616'
+
+tags:
+  - Project
+  - Advocacy
+  - Monte carlo simulation
+
+thumbnail: matrix-simulation-outcome.png
+
+imgs:
+  - matrix-simulation-outcome.png
+---
+
+## TL;DR
+
+The City of Austin is about to spend almost half a billion dollars in bond money to improve major roadways for mobility, while considering community concerns to influence the projects that are recommended. Unfortunately, the official recommendations for which projects should be funded prioritize lengthy roadways over the potential benefits that were supported by voters and by City Council themselves. We suggest the goal not be to throw money at the most asphalt, but rather to fund projects that impact the most people and the connections between them. <i>By simplifying the algorithm used to rank and determine projects to be funded, we believe it is possible to eliminate the road-length bias and to squeeze over $100 million of additional benefits out of the money allocated for these projects.</i>
+
+## What they intended
+
+In November 2016, 59% of voters in Austin decided that they wanted the City of Austin to issue $720 million in municipal bonds to fund transportation projects, with $482 million dedicated to projects along designated major roadways, which are also known as mobility corridors. Prior to the vote, the City Council adopted a “<a href="https://services.austintexas.gov/edims/document.cfm?id=262118" target="_blank">Contract With Voters</a>” that outlined key mobility and community priorities to guide selection of the proposed projects that would get funding.
+
+## Assumptions that were made
+
+The Contract With Voters was light on specifics, so the <a href="https://data.austintexas.gov/stories/s/Corridor-Mobility-Program/gukj-e8fh/" target="_blank">Corridor Mobility Program</a> team that developed the prioritization algorithm had to determine the following: which priorities would be included via a scoring system, what metrics to use to represent each priority, data sources for each metric, how those numbers would be adjusted to relate to each other, and the relative weight of each metric for the final scoring. There are inherently many subjective decisions within this process, as comparing different benefits regarding traffic congestion, safety, affordability, and environmental concerns can be like comparing apples to oranges.
+
+All metrics are broken into two broad categories: mobility, and community considerations. Mobility metrics relate to reduced traffic delay, improved level of service for transit and active transportation, increased traffic safety, higher residential population densities near the corridor, and others. Community consideration metrics are concerned with reducing the impact on existing affordable housing units and businesses, increasing the potential for development of affordable and mixed-income housing, reducing the environmental impact, etc. One major decision was that the mobility metrics would collectively comprise a majority 60% of the final score, and community consideration metrics would comprise a less influential 40%, to reflect that this is primarily a mobility bond.
+
+## The model that was built
+
+- <b>1. Determine potential projects</b>: 34 potential projects were proposed
+  that incorporate infrastructure changes for different segments of each
+  corridor. Every corridor has a “systemic” project that covers the entire
+  length of the defined corridor, as well as one or more subsection projects
+  that focus infrastructure changes within more localized segments.
+
+<figure>
+  <center>
+    <img src="matrix-city-map.png" width="350" alt="City map of Austin. There are blue lines that indicate the nine corridors eligible for funding from this program."/><br>
+    <small><i>This is Austin. The blue lines indicate the nine corridors that are eligible for funding from this program.</i></small>
+  </center>
+</figure>
+
+- <b>2. Quantify priorities</b>: Metrics were selected to represent each
+  priority, and many of these measures were divided by the linear roadway length
+  in miles that each project covers. For example, the number of new or improved
+  intersections within each project was divided by project mileage, as was the
+  number of new trees estimated for each project.
+
+<figure>
+  <center>
+    <img src="matrix-tree-math.png" width="350" alt="A division problem where the left side has 10 tree icons divided by text saying 3.3 miles, and the right side has 3 tree icons divided by text saying 1 mile."/><br>
+  </center>
+</figure>
+
+- <b>3. Standardize metric scales</b>: Because each metric exists on its own
+  scale, these are all standardized so that the lowest scoring project receives
+  a 0, the highest scoring project gets 5 points (for mobility metrics, the
+  maximum is 4 for community metrics), and all other projects receive a score
+  that is adjusted proportionally to fit within the new scale.
+
+<figure>
+  <center>
+    <img src="matrix-standardizing-metrics.png" width="350" alt="Three linear scales on the left showing very different min and max values, as well as different distributions of data points. There are arrows that relate these linear scales to new linear scales that set the range to min and max values for each metric."/><br>
+  </center>
+</figure>
+
+- <b>4. Build the two scores</b>: Each individual metric fits within either the
+  mobility metrics, or within the community considerations metrics.
+
+  - Community consideration metrics: metrics are divided between six broader community priority categories, and values are added together in different ways for each of the six categories. Within each category, projects are ranked and given a relative score from 0 to 3. These are then averaged for each project to produce a community consideration score that is out of 3 points total.
+
+  - Mobility metrics: these are each given a weight in which all weights add up to 100%, the scores for each project are multiplied by the weight selected for that metric, and all of these weighted values are added up to become the mobility score for that project. For each project, the mobility score is a value out of 100 points.
+
+<figure>
+  <center>
+    <img src="matrix-weighting-scores.png" width="350" alt="Three differently sized (and differently filled) boxes each representing a particular measure. Each is multiplied by a weight based on its relative imporance, and these products are summed up to create a composite weighted score."/><br>
+  </center>
+</figure>
+
+- <b>5. Calculate raw metrics score and adjustment score</b>: the final score is
+  related to two different components.
+
+  - Raw metrics score: This is a combination of the mobility score and the community considerations score. First the community considerations score is divided by 3 and multiplied by 100, to set it on a 0 to 100 scale similar to the mobility score. Then 40% of the community consideration score and 60% of the mobility score are added together to calculate a raw metrics score.
+
+  - Adjustment score: Transportation planners often use a metric created by dividing the estimated cost of an infrastructure project by the length of that project as a way to compare bids from contractors. This is a useful metric when, for example, you want to identify the best deal when several bidders want to build a regimented, linear project (such as a 5-foot wide sidewalk over several blocks), in which case this metric helps determine the best bang-for-the-buck. <i>A key point of this post is that cost / distance is not a meaningful metric when we are talking about prioritizing projects that are not comparable nor naturally linear.</i>
+
+- <b>6. Determine final score</b>: for each project, the “raw metrics score” is
+  divided by the “adjustment score,” to account for each corridor having
+  different costs and roadway lengths.
+
+<figure>
+  <center>
+    <img src="matrix-scoring-math.png" width="350" alt="A mathematical representation of the scoring calculation described in the preceding paragraph."/><br>
+  </center>
+</figure>
+
+- <b>7. Rank and select projects</b>: after ranking each project’s final score
+  from highest to lowest, corridor projects are selected from the top ranked
+  until reaching the $482 million budget for corridor projects.
+
+## The big issue with the model
+
+The model as developed by the Corridor Mobility Projects team results in a list of projects heavily skewed towards those that cover more roadway length, all else being equal. This is a problem since (<b>1</b>) there is no obvious value to funding projects on longer road lengths than similarly beneficial projects on shorter road lengths and (<b>2</b>) we lose some of the impact of all the good metrics that were derived from the Contract with Voters.
+
+Mathematically, it’s fairly easy to see how this happened. Imagine two projects that we will call Alamo Avenue and Big Bend Boulevard:
+
+<figure>
+  <center>
+    <img src="matrix-project-comparison.png" width="600" alt="A table comparing two hypothetical roads, one with higher raw scores than the other. Because the one with the lower raw benefits score is considerably longer, it wins out after the scores are divided by road segment length."/><br>
+  </center>
+</figure>
+
+The proposal for Alamo Avenue has both a greater mobility score and a greater community considerations score than does the proposal for Big Bend Boulevard. This could mean that the Alamo Avenue project has a greater reduction in traffic delay per person, better transit improvements, and a greater total number of affordable housing units preserved, etc. These projects would cost the same to implement, meaning that per dollar spent, we’d get more benefit from the Alamo Avenue projects. However, the section of Alamo Avenue that would receive the investment is just 2 miles long, while the section of Big Bend Boulevard under consideration is much longer, at 8 miles long. Using the formula developed by the Corridor Mobility Projects team, Big Bend’s score would end up being more than double that of Alamo’s - even though they’d have the same cost and Alamo clearly would provide more benefits for the people of Austin!
+
+And this pattern bears true in their real list of recommendations. They are recommending $452.3 million in projects and the total roadway length of these 13 projects added up is about 59 miles. If there were no relationship between the roadway length of a corridor project and its likelihood of being selected, the sum of roadway lengths within all the projects that could be bought within budget would generally fall between 19 and 46 miles, far lower than that of the list of recommendations (This was estimated using a Monte Carlo simulation, so when we randomly sample groups of these projects that add up to the budget, 90% of the time our results fall within that range.) Note that the maximum possible sum of roadway lengths given the possible projects is 64 miles - and when we compare the official recommendations list with the maximized road length list, they differ by only two projects (out of 13 included). It’s almost as if the prioritization process were designed only to fund long roadways, regardless of the actual benefit to Austinites.
+
+## Our recommendation
+
+We recommend two changes to the prioritization matrix that would simplify the process, and that could greatly improve the mobility and community outcomes that would result from implementation.
+
+The first is to divide the raw scores (derived from a combination of the mobility and community considerations scores) by just the estimated cost of the project, and ignore the project roadway length. The second is to move back to the original metrics and not divide any of them by roadway length in the first place. If we can eliminate roadway length as a contributor to the final selection process, we can be more confident that the things that matter - our mobility and community metrics, as well as affordable project costs - will be the factors that we maximize, and ensure the best bang-for-our-bucks with these corridor investments.
+
+In doing so, we recommend the implementation of the 16 top-ranked corridor projects (in terms of total points per cost, after making the two algorithm simplifications we are recommending) along with partial funding of three additional projects that would ensure each of the nine corridors receive investments. We believe our list eliminates the bias in terms of project roadway length, as the sum of roadway lengths for our alternate list totals 30 miles for the fully funded projects, and 44 miles if we include the partially funded projects as well - distances which are within a much more reasonable range given the assumption that there is no road length bias.
+
+<figure>
+  <center>
+    <img src="matrix-simulation-outcome.png" width="600" alt="A linear scale from 0 to about 70 miles representing total linear length of roadway involved in a given set of bond projects. A bunch of dots are distributed showing sets of potential bond projects not incorporating road length as a factor. Also displayed is our recommendation, which happens to involve about 30 miles of road, as well as the city's preference which is just shy of the maximum road length value possible for thees projects."/><br>
+  </center>
+</figure>
+
+Our alternate set of recommendations permits greater benefits in terms of mobility and community improvement, and within the same budget. <i>These new recommendations would lead to a 30-40% improvement in terms of increased total points of mobility and community benefit per dollar spent, which could be thought of as over $100 million in additional benefits for Austin without any additional spending.</i>
