@@ -7,37 +7,45 @@ import TitledContent from '../components/TitledContent'
 export default function AboutPage() {
   return (
     <LayoutContainer narrow>
-      <TitledContent heading="Hi there, nice to meet you!">
+      <TitledContent heading="Hey folks!">
         <ImageCarousel
-          images={[`/me-0${Math.floor(Math.random() * 7) + 1}.jpeg`]}
+          images={[`/me-0${Math.floor(Math.random() * 1) + 1}.png`]}
         />
         <p>
-          I&apos;m a full-stack software engineer living in Long Beach,
-          California, with six years of experience in the worlds of engineering
-          and design, relentlessly advocating for simple user experiences,
-          accessibility, and robust engineering practices. My specialties are{' '}
-          <Link href="/projects/bigfix-alluvial" passHref>
-            <StyledLink>interactive data visualization </StyledLink>
+          I&apos;m a data scientist with a decade experience supporting real
+          world data projects by{' '}
+          <Link href="/projects/bee-swarm-for-distributions" passHref>
+            <StyledLink>
+              building analytics and visualization software
+            </StyledLink>
+          </Link>{' '}
+          in health tech and for public health initiatives. I&apos;m passionate
+          about{' '}
+          <Link href="/projects/aggregates-with-missing-data" passHref>
+            <StyledLink>clear communication of data processes</StyledLink>
           </Link>{' '}
           and{' '}
-          <Link href="/projects/ui-testing-talk" passHref>
-            <StyledLink>UI software testing</StyledLink>
+          <Link href="/projects/public-safety-versus-itself" passHref>
+            <StyledLink>research findings</StyledLink>
           </Link>
           .
         </p>
         <p>
-          I work as a software engineer at IBM, where I build{' '}
-          <Link href="/projects/query-builder" passHref>
-            <StyledLink>user-centered tools</StyledLink>
-          </Link>{' '}
-          for cybersecurity professionals. When I am not working, I am probably
-          working on my master&apos;s degree, thinking up a new{' '}
-          <Link href="https://github.com/diego-codes/recipes" passHref>
-            <StyledLink target="_blank" rel="noreferrer">
-              food experiment
-            </StyledLink>
+          My upcoming projects focus on advancing scientific research workflows
+          through data analytics and machine learning within the biotech and
+          life science industries.
+        </p>
+        <p>
+          When not working, you can find me hosting{' '}
+          <Link href="https://www.meetup.com/tech-by-the-beach/" passHref>
+            <StyledLink target="_blank">Tech by the Beach</StyledLink>
           </Link>
-          , or going on long walks with my husband.
+          , taking{' '}
+          <Link href="https://www.instagram.com/nicwillmoe/" passHref>
+            <StyledLink target="_blank">landscaping photography</StyledLink>
+          </Link>
+          , or hanging out with my husband and our kitten, Nandor the
+          Relentless.
         </p>
       </TitledContent>
     </LayoutContainer>
