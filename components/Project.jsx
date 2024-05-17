@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { DefaultScale } from '../utils/typography.utils'
@@ -63,15 +62,15 @@ const ProjectNavigationLinks = styled.div`
 `
 
 export default function Project({
-  imgs,
-  name,
-  description,
-  tags,
+  imgs = [],
+  name = '',
+  description = '',
+  tags = [],
   previous,
   next,
   color,
-  links,
-  children,
+  links = [],
+  children = '',
 }) {
   const topContent = (
     <>
@@ -98,21 +97,11 @@ export default function Project({
 
   const bottomContent = (
     <>
-      {' '}
       {/* eslint-disable-next-line react/no-danger */}
       <Content dangerouslySetInnerHTML={{ __html: children }} />
       <ProjectNavigationLinks>
-        {previous && (
-          <Link href={previous} passHref>
-            <StyledLink>Previous project</StyledLink>
-          </Link>
-        )}
-
-        {next && (
-          <Link href={next} passHref>
-            <StyledLink>Next project</StyledLink>
-          </Link>
-        )}
+        {previous && <StyledLink href={previous}>Previous project</StyledLink>}
+        {next && <StyledLink href={next}>Next project</StyledLink>}
       </ProjectNavigationLinks>
     </>
   )
@@ -155,16 +144,4 @@ Project.propTypes = {
     }),
   ),
   children: PropTypes.string,
-}
-
-Project.defaultProps = {
-  imgs: [],
-  name: '',
-  description: '',
-  tags: [],
-  previous: undefined,
-  next: undefined,
-  color: undefined,
-  links: [],
-  children: '',
 }

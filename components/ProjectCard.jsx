@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import TagsList from './TagsList'
 import { DefaultScale } from '../utils/typography.utils'
 import StyledLink, { hoverStyles } from './StyledLink'
@@ -18,7 +18,7 @@ const ReadMoreButton = styled(StyledLink)`
   }
 `
 
-const Container = styled.a`
+const Container = styled(Link)`
   color: inherit;
   text-decoration: none;
   background-color: ${props => props.theme.bg02};
@@ -75,34 +75,28 @@ export default function TitledContent({
   img,
   heading,
   children,
-  tags,
+  tags = [],
   url,
   color,
 }) {
   return (
-    <Link href={url} passHref>
-      <Container id={id}>
-        <Header>
-          <ImageContainer color={color}>
-            {img && (
-              <Image
-                src={`/projects/${img}`}
-                layout="fill"
-                objectFit="contain"
-              />
-            )}
-          </ImageContainer>
-          <Heading>{heading}</Heading>
-        </Header>
-        <Summary>
-          {children} <ReadMoreButton as="span">Read more</ReadMoreButton>
-        </Summary>
+    <Container href={url} id={id}>
+      <Header>
+        <ImageContainer color={color}>
+          {img && (
+            <Image src={`/projects/${img}`} layout="fill" objectFit="contain" />
+          )}
+        </ImageContainer>
+        <Heading>{heading}</Heading>
+      </Header>
+      <Summary>
+        {children} <ReadMoreButton as="span">Read more</ReadMoreButton>
+      </Summary>
 
-        <Footer>
-          <TagsList tags={tags} />
-        </Footer>
-      </Container>
-    </Link>
+      <Footer>
+        <TagsList tags={tags} />
+      </Footer>
+    </Container>
   )
 }
 
@@ -114,14 +108,4 @@ TitledContent.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
   url: PropTypes.string,
-}
-
-TitledContent.defaultProps = {
-  id: undefined,
-  heading: undefined,
-  img: undefined,
-  children: undefined,
-  tags: [],
-  color: undefined,
-  url: undefined,
 }

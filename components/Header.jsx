@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import styled, { useTheme } from 'styled-components'
@@ -58,9 +57,7 @@ export default function Header({ children }) {
         <LayoutContainer backgroundColor={theme.bg03} padding="1.2rem 1.5rem">
           <Container>
             <Title>
-              <Link href="/" passHref>
-                <TitleLink>Nic Moe</TitleLink>
-              </Link>
+              <TitleLink href="/">Nic Moe</TitleLink>
             </Title>
             {children && <div>{children}</div>}
           </Container>
@@ -72,8 +69,4 @@ export default function Header({ children }) {
 
 Header.propTypes = {
   children: PropTypes.node,
-}
-
-Header.defaultProps = {
-  children: undefined,
 }

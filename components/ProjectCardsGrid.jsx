@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useState } from 'react'
-import Link from 'next/link'
 import LayoutContainer from './LayoutContainer'
 import TitledContent from './TitledContent'
 import ProjectCard from './ProjectCard'
@@ -32,8 +31,8 @@ const SeeMoreButton = styled(Button)`
   ${getResponseTypeStyle(Size.h5)}
 `
 export default function ProjectCardsGrid({
-  heading,
-  projects,
+  heading = 'Projects',
+  projects = [],
   showFilters,
   seeMoreLink,
 }) {
@@ -101,9 +100,9 @@ export default function ProjectCardsGrid({
 
         {seeMoreLink && (
           <SeeMoreButtonContainer>
-            <Link href={`/projects#${seeMoreLink}`} passHref>
-              <SeeMoreButton as="a">See more projects</SeeMoreButton>
-            </Link>
+            <SeeMoreButton as="a" href={`/projects#${seeMoreLink}`}>
+              See more projects
+            </SeeMoreButton>
           </SeeMoreButtonContainer>
         )}
       </TitledContent>
@@ -125,11 +124,4 @@ ProjectCardsGrid.propTypes = {
   ),
   showFilters: PropTypes.bool,
   seeMoreLink: PropTypes.string,
-}
-
-ProjectCardsGrid.defaultProps = {
-  heading: 'Projects',
-  projects: [],
-  showFilters: false,
-  seeMoreLink: undefined,
 }

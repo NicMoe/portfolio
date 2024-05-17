@@ -32,7 +32,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Nic Moe, Data Scientist</title>
           <meta
             name="description"
             content="I'm a data scientist working to advance scientific research workflows through data analytics and machine learning."
