@@ -1,12 +1,13 @@
 ---
-name: Aggregate value rules for low counts based on clinical/business impact
+name: Handling missing data in surgical metrics
 type: project
-description: Aggregate value rules for low counts based on clinical/business impact
+description: How I improved trust in data aggregations for clinical insights despite data gaps
 color: '#161616'
 
 tags:
   - Project
   - User experience research
+  - Data quality
   - Missing data
 
 thumbnail:
@@ -16,23 +17,15 @@ imgs:
 
 ## Context
 
-User story: I want to compare surgical cases in terms of metrics like spend or some patient outcome across groups, such as by primary physician. Sometimes there is missing data for a given case, and I don’t want that missing data to give me a skewed sense of reality.
-
-Business context: When does missing data impact interpretation and decision making? While we want to be transparent about what data clients provide to us (GIGO), we want to make sure anywhere we surface data transformations (such as aggregation or classification) doesn’t lead users to the wrong conclusion. With sporadically missing data, there is little way for us to know if missingness is related to the variable of interest. As well, even when aggregate values aren’t intended to be compared, users will try to do that which could to invalid conclusions.
-
-## My role
-
-I was the lead front-end engineer for this project and the application. On my team were several designers and the lead back-end engineer to help implement the editor.
+When does missing data impact interpretation and decision making? Hospital supply chain users need to compare surgical cases based on metrics like spend or patient outcomes, but missing data can skew the analyses. It's important to identify when missing data impacts interpretation to avoid misleading conclusions, ensuring transparency in the data provided and any aggregations or transformations. Since sporadic missing data may affect the metrics of interest, users might inadvertently draw invalid conclusions.
 
 ## Process
 
-I didn’t have direct access to end users for this study, but I did have access to internal professionals who either had direct experience in roles similar to our end users or who deeply understood the client context.
+I led the development of a data check feature to ensure reliable data interpretation despite missing values in surgical case metrics. I didn’t have direct access to end users for this study, but I did have access to internal professionals who either had direct experience in roles similar to our end users or who deeply understood the client context. I investigated the impact of missing data on aggregate values by comparing medians calculated from available data and those imputed with extreme values, then sought expert opinions on the acceptability of these discrepancies for clinical and administrative decisions.
 
 ## Solution
 
-I identified real examples where data was missing for variables of interest, and calculated aggregate values such as medians with (1) the available data only and (2) imputing the highest or lowest actual values, to simulate extreme situations where missingness is highly correlated with the variable of interest. Using several dozen of these aggregate value pairs, such as median OR time for total shoulder arthroplasty, I asked multiple content experts with nursing and supply chain experience about their comfort with the gap between these pair values (let’s say median time with available values is calculated as 100 minutes, but with imputed values in 110). Would that gap affect clinical or administrative decisions?
-
-Given a bunch of these assessments, I was able to chart out the likelihood of their comfort / discomfort with such gaps for various aggregate values and clinical metrics. Using the conservative assumption that all missing values are maximally extreme (given the data) and that we want these professionals to trust the aggregate value the majority of the time (80%+), I was able to determine that we could be missing up to 20% of values for medians but only 4% of values for 10th and 90th percentile values, and still retain trust that the aggregate wouldn’t lead us astray clinically. For aggregate values missing above those thresholds, I suggested we mask the calculation and direct users to the case-level data; for aggregate values within those thresholds but still missing at least one value, I suggested we display the value with an asterisk.
+Analysis revealed that professionals could trust medians with up to 20% missing values, but only 4% for 10th and 90th percentiles. Based on these findings, I recommended masking calculations missing data above these thresholds and marking values within thresholds but with missing data with an asterisk and explanation.
 
 ## Outcome
 
@@ -40,7 +33,7 @@ The feature changes introduced from this assessment greatly increased transparen
 
 ## Insights
 
-A greater appreciation for statistical vs. clinical/administrative significance. In this case, clinical/administrative significance refers to the level of difference from expected value that would cause a potential change in action.
+I gained a greater appreciation for statistical vs. clinical/administrative significance. In this case, clinical/administrative significance refers to the level of difference from an expected value that would cause a potential change in action.
 
 Medians are far more robust than outlier percentiles. This makes sense, given that this exercise assumes missing values are extreme (“outlier”) values that need to make up a significant fraction of the set to meaningfully shift the middle of a typical distribution; whereas outlier percentiles (such as 10th or 90th percentiles) are defined as closer to those extreme points, leading to less stability.
 
@@ -48,6 +41,6 @@ Medians are far more robust than outlier percentiles. This makes sense, given th
 
 I would have loved to spend more time working directly with clients to dig upstream and understand the cause of these missing data points.
 
-While I think the method I developed for this purpose is replicable in any other context, I would strongly caution others from directly applying the bottom line results I came up with for the purposes of this project. I’d love to replicate this process in other contexts to understand if there are generalizations that could be made around trust in aggregate values when there are known missing data points.
+While I think this method I developed is replicable in similar contexts, I would caution others from directly applying the bottom line results I came up with elsewhere. That said, I’d love to replicate this process in other data contexts to understand if there are generalizations that could be made around trust in aggregate values when there are known missing data points.
 
-One unknown before this research was how sensitive aggregate metrics would be to missing data and if any missing data could make resultant aggregates suspect. If that had been the case, we may have needed to rethink the product feature to avoid redacting so much data that we would put trust in the product itself in question. Fortunately, metric-specific missing data wasn’t common within our clients’ data and aggregate metrics were relatively robust to data missingness so this didn’t challenge the product but likely strengthen it. Given enough time and resources, we may have wanted to confirm that question of data trust with our users.
+One unknown before this research was how sensitive aggregate metrics would be to missing data and if any missing data could make resulting aggregates suspect. If that had been the case, we may have needed to rethink this product feature to maintain trust in the product itself. Fortunately, missing data wasn’t common within our clients’ data, and aggregate metrics were relatively robust to data missingness, so this didn’t challenge the product but rather strengthened it. Given enough time and resources, we may have wanted to confirm that question of data trust with our users.
