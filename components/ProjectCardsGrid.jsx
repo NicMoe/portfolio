@@ -58,7 +58,7 @@ export default function ProjectCardsGrid({
       : projects
 
   const descendingProjects = filteredProjects.sort((a, b) =>
-    b.slug.localeCompare(a.slug),
+    b.dateId.localeCompare(a.dateId),
   )
 
   const handleFilterToggle = name => {
