@@ -106,7 +106,7 @@ export default function Project({
     </>
   )
 
-  if (imgs.length === 0) {
+  if (!imgs || imgs.length === 0) {
     return (
       <LayoutContainer narrow>
         {topContent}
