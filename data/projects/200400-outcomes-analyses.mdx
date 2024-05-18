@@ -1,7 +1,7 @@
 ---
-name: Outcomes analyses feature
+name: How product attributes relate to patient outcomes
 type: project
-description: How to define and communicate statistical vs. clinical significance; used to prioritize clinical initiatives based on impact and cost-effectiveness
+description: Empowering supply chain teams with local clinical data to improve medical device sourcing
 color: '#161616'
 
 tags:
@@ -20,11 +20,7 @@ imgs:
 
 ## Context
 
-Hospital governance determines who within an organization makes decisions such as which medical devices are supplied to patients. With supply chain teams being our primary user base and purchaser, we need to give them appropriate data to effectively partner with their clinical teams on sourcing initiatives.
-
-Supply chain professionals need to ensure their medical device sourcing processes balance financial and clinical needs, requiring buy-in from clinical partners to maintain or improve patient health. To achieve these aims, supply chain teams require the necessary data to collaborate effectively with clinical teams. Our software already supported them with device purchase orders, product attributes, clinical usage and outcomes, and expert-written evidence insights on variations in product performance.
-
-While we gave them available research and expert advice, what they wanted was a way to understand how medical device attributes relate to clinical patient outcomes within their own hospital systems' data.
+Hospital governance dictates decision-making regarding medical device supplies, involving supply chain teams who need accurate data to collaborate with clinical teams effectively. These teams must balance financial and clinical needs in device sourcing, requiring data on device utilization and patient outcomes. While our software provided extensive support, users specifically sought ways to relate device attributes to clinical outcomes within their own hospital data.
 
 For example, given different attributes for various implanted devices, how do surgical cases differ in patients’ length of hospital stay? And how does any difference appearing in a given client's data relate to what we’d expect based on available peer reviewed research?
 
@@ -41,37 +37,26 @@ There were several challenges I had to consider:
   >
     multiple comparisons problem
   </a>
-- <b>4.</b> While we had patient attributes such as diagnosis and billing codes,
-  we had no other information to help ascertain physicians’ reasons to choose one
-  product over another
 
 ## Process
 
 #### Data structure
 
-I integrated our clients' product attribute data and surgical case data into a unified schema that allowed us to compare surgical cases that used products with a given attribute against cases using products with a different attribute.
-
-For expected relationships between attribute and outcome, I worked with our content expert team to determine which attribute/outcome associations were best supported by the literature and what direction those associations went. We determined a priority list and I set up a table in the database.
+I integrated our clients' product attribute data and surgical case data into a unified schema that allowed us to compare surgical cases that used products with a given attribute against cases using products with a different attribute. For expected relationships between attribute and outcome, I worked with our content expert team to determine which attribute/outcome associations were best supported by the literature and what direction those associations went. We determined a priority list and I set up a table in the database.
 
 #### Clinical significance
 
-For defining clinical significance, I had access to medical device experts, clinical experts, and hospital supply chain experts. While there were potentially thousands of product attributes of interest, we were working with a smaller set of initial clinical outcomes so I could interview these experts about what matters for those. And I learned many important facts.
-
-For example, time that a patient is in the operating room (OR) is both associated with surgical complexity and also with subsequent infection rate; and from an administrative point of view, longer OR times lead to fewer patients getting their operation within a given day. So understanding if a particular device attribute is associated with longer OR times is a critical part of a supply chain team and their clinical partners understanding how switching devices could affect individual patients, patient cohorts, and business operations.
+To define clinical significance, I consulted medical device, clinical, and hospital supply chain experts, focusing on a small set of initial clinical outcomes to learn what real-world considerations are relevant for each. For example, time that a patient is in the operating room (OR) is both associated with surgical complexity and also with subsequent infection rate; and from an administrative point of view, longer OR times lead to fewer patients getting their operation within a given day. So understanding if a particular device attribute is associated with longer OR times is a critical part of understanding how switching devices could affect individual patients, patient cohorts, and business operations.
 
 And let’s say that we’re comparing these two groups and discover that, on average, they differ by 5 minutes, which might even be “statistically significant”. Is it clinically significant?
 
-I worked with the content experts to come up with rules around this.
+I investigated the impact of missing data on aggregate values by comparing medians calculated from available data and those imputed with extreme values, then sought expert opinions on the acceptability of these differences for clinical and administrative decisions.
 
 ## Solution
 
-#### Multiple comparisons problem
+For each data type, I decided the best option is to both run a statistical test and additionally use a rules set based on expert-defined clinical significance to determine if groups of surgical cases differ. If a different is detected for either, the solution was to display a message saying that there may be a real difference between the groups worth digging into with their clinical team. If neither is true, we'd display a message stating that there’s no significant difference detected in the data. And the data itself is visualized at the patient cohort level along with an option for users to dig into the raw data themselves.
 
-For each data type, I decided the best option is to both run a statistical test and additionally use a rules set related to defined clinical significance to determine if the groups are different. If it’s true for either, display a message saying that there may be a real difference between the groups worth digging into with their clinical team. If neither is true, display a message stating that there’s no significant difference detected in the data. And the data itself is visualized at the patient cohort level along with an option for users to dig into the data themselves.
-
-#### Physician decisions
-
-For physician reasons that might explain why a product with a given attribute would be used over another, we had no data.
+To avoid the multiple comparisons problem, I recommended we never display different comparisons or list results of these significance tests in the on the same page.
 
 ## Outcome
 
@@ -83,4 +68,4 @@ I learned a ton about schema integration, using Pandas and SciPy in production, 
 
 ## What I would do differently next time
 
-Including content experts in defining significance was crucial to this project. Given more resources, I would have loved to provide these client data comparisons to our research team to help them in the evidence insights creation process. And I would have loved to determine ways to expand the analyses beyond identifying associations into more causal questions (e.g., if a given patient was given a different device, how might that have affected their outcome?).
+Including content experts in defining significance was crucial to this project. Given more resources, I would have loved to provide these client data comparisons to our research team to help them in the evidence insights creation process. And I would have loved to expand the analyses beyond identifying associations into more causal questions (e.g., if a given patient was given a different device, how might that have affected their outcome?).
