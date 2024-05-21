@@ -1,4 +1,4 @@
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 import LayoutContainer from './LayoutContainer'
 import pgk from '../package.json'
 import StyledLink from './StyledLink'
@@ -42,9 +42,12 @@ const Contact = styled.p`
 `
 
 export default function Footer() {
-  const theme = useTheme()
   return (
-    <LayoutContainer backgroundColor={theme.bg03} padding="1rem 1.5rem">
+    <LayoutContainer
+      backgroundColor="var(--theme-bg-03)"
+      color="var(--theme-text-03)"
+      padding="1rem 1.5rem"
+    >
       <Container>
         <Copyright>
           Site by{' '}
