@@ -12,9 +12,9 @@ export default createGlobalStyle`
   }
 
   :root {
-    --theme-bg-01: hsl(49,90%,95%);
+    --theme-bg-01: hsl(49, 90%, 95%);
     --theme-text-01: hsl(0deg 0% 0%);
-    --theme-bg-02: hsl(182 70% 30% / 1);
+    --theme-bg-02: hsl(182, 70%, 30%);
     --theme-text-02: hsl(0deg 0% 100%);
     --theme-bg-03: hsl(27.78deg 80% 50%);
     --theme-text-03: hsl(0deg 0% 100%);
@@ -26,10 +26,9 @@ export default createGlobalStyle`
     font-family: 'Fira Sans', 'Helvetica Neue', 'Arial', sans-serif;
     font-weight: 300;
     line-height: 1.75;
-    
-    background-color: var(--theme-bg-03)
+    background-color: var(--theme-bg-03);
   }
-  
+
   body {
     background-color: var(--theme-bg-01);
     color: var(--theme-text-01);
@@ -70,9 +69,9 @@ export default createGlobalStyle`
     block-size: auto;
   }
 
-  :any-link  {
+  :any-link {
     color: inherit;
-    
+
     &:focus {
       outline: 2px solid var(--theme-primary);
     }
