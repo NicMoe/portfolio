@@ -35,6 +35,7 @@ export default function ProjectCardsGrid({
   projects = [],
   showFilters,
   seeMoreLink,
+  buttonColor = 'var(--theme-bg-02)',
 }) {
   const [selectedFilters, setSelectedFilters] = useState([])
 
@@ -100,7 +101,11 @@ export default function ProjectCardsGrid({
 
         {seeMoreLink && (
           <SeeMoreButtonContainer>
-            <SeeMoreButton as="a" href={`/projects#${seeMoreLink}`}>
+            <SeeMoreButton
+              as="a"
+              href={`/projects#${seeMoreLink}`}
+              $buttonColor={buttonColor}
+            >
               See more projects
             </SeeMoreButton>
           </SeeMoreButtonContainer>
@@ -124,4 +129,5 @@ ProjectCardsGrid.propTypes = {
   ),
   showFilters: PropTypes.bool,
   seeMoreLink: PropTypes.string,
+  buttonColor: PropTypes.string,
 }

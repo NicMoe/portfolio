@@ -12,13 +12,13 @@ export default createGlobalStyle`
   }
 
   :root {
-    --theme-bg-01: hsl(49, 90%, 95%);
-    --theme-text-01: hsl(250, 10%,10%);
-    --theme-bg-02: hsl(187, 70%, 72%);
-    --theme-text-02: hsl(120, 10%, 10%);
-    --theme-bg-03: hsl(20, 80%, 50%);
-    --theme-text-03: hsl(200, 100%, 100%);
-    --theme-primary: hsl(290, 99%, 18%);
+    --theme-bg-01: hsl(49,90%,95%);
+    --theme-text-01: hsl(0deg 0% 0%);
+    --theme-bg-02: hsl(182 70% 30% / 1);
+    --theme-text-02: hsl(0deg 0% 100%);
+    --theme-bg-03: hsl(27.78deg 80% 50%);
+    --theme-text-03: hsl(0deg 0% 100%);
+    --theme-primary: hsl(0deg 0% 100%);
   }
 
   html {

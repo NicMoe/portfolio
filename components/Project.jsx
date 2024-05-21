@@ -8,7 +8,7 @@ import ImageCarousel from './ImageCarousel'
 
 const Description = styled.p`
   font-size: ${DefaultScale.h4};
-  color: var(--theme-text-02);
+  color: var(--theme-bg-02);
 `
 
 const Links = styled.p`
@@ -75,7 +75,7 @@ export default function Project({
   const topContent = (
     <>
       <h1>{name}</h1>
-      <TagsList tags={tags} />
+      <TagsList tags={tags} tagColor="var(--theme-bg-02)" />
       <Description>{description}</Description>
 
       {links && (

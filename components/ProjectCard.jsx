@@ -58,17 +58,20 @@ const Heading = styled.h2`
   font-size: ${DefaultScale.h2};
   padding-inline-start: ${padding};
   padding-inline-end: ${padding};
+  color: var(--theme-text-02);
 `
 
 const Summary = styled.p`
   flex: 1 1 auto;
   padding-inline-start: ${padding};
   padding-inline-end: ${padding};
+  color: var(--theme-text-02);
 `
 
 const Footer = styled.footer`
   padding: ${padding};
   overflow: hidden;
+  color: var(--theme-text-02);
 `
 
 export default function TitledContent({

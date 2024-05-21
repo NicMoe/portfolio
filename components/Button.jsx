@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export default styled.button`
+const Button = styled.button.attrs(({ $buttonColor }) => ({
+  style: {
+    borderColor: $buttonColor || 'var(--theme-primary)',
+    color: $buttonColor || 'var(--theme-primary)',
+  },
+}))`
   font: inherit;
   appearance: none;
   background: linear-gradient(transparent 0%, var(--theme-primary) 0%) no-repeat;
@@ -10,11 +15,11 @@ export default styled.button`
   text-decoration: none;
 
   padding: 0.3em 0.7em;
-  border: 1px solid var(--theme-primary);
+  border: 1px solid;
   cursor: pointer;
 
   && {
-    color: var(--theme-primary);
+    color: inherit;
   }
 
   &:hover {
@@ -23,7 +28,8 @@ export default styled.button`
   }
 
   &:focus {
-    outline: 2px solid var(--theme-primary);
+    outline: 2px solid;
     outline-offset: 1px;
   }
 `
+export default Button

@@ -33,7 +33,7 @@ const ResetButton = styled(Button)`
 `
 
 const Count = styled.span`
-  color: var(--theme-text-02);
+  color: var(--theme-bg-02);
   ${getResponseTypeStyle(Size.small)};
 `
 

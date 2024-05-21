@@ -14,10 +14,10 @@ const CheckboxDisplay = styled.span`
   font-size: 0.8em;
   border-radius: 0.1em;
   margin-inline-end: 0.4em;
-  border: 1px solid var(--theme-primary);
+  border: 1px solid var(--theme-bg-02);
   color: var(--theme-bg-01);
   background-color: ${props =>
-    props.selected ? 'var(--theme-primary)' : 'transparent'};
+    props.selected ? 'var(--theme-bg-02)' : 'transparent'};
 `
 
 const Input = styled.input`
