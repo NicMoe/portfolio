@@ -55,6 +55,7 @@ export default function Footer() {
             href={pgk.repository.url}
             target="_blank"
             rel="noreferrer"
+            $backgroundColor="var(--theme-primary)"
           >
             Diego Hernandez
           </StyledLink>
@@ -65,6 +66,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/nicwillmoe/"
             target="_blank"
             rel="noreferrer"
+            $backgroundColor="var(--theme-primary)"
           >
             LinkedIn
           </StyledLink>{' '}
@@ -72,6 +74,7 @@ export default function Footer() {
             href="https://github.com/NicMoe/"
             target="_blank"
             rel="noreferrer"
+            $backgroundColor="var(--theme-primary)"
           >
             GitHub
           </StyledLink>{' '}
@@ -79,6 +82,7 @@ export default function Footer() {
             href="https://www.instagram.com/nicwillmoe/"
             target="_blank"
             rel="noreferrer"
+            $backgroundColor="var(--theme-primary)"
           >
             Instagram
           </StyledLink>{' '}
@@ -86,6 +90,7 @@ export default function Footer() {
             href="https://bsky.app/profile/nicmoe.bsky.social"
             target="_blank"
             rel="noreferrer"
+            $backgroundColor="var(--theme-primary)"
           >
             Bluesky
           </StyledLink>

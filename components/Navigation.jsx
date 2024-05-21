@@ -43,6 +43,7 @@ export default function Navigation() {
         <NavLink
           href="/projects"
           active={router.route.includes('projects') ? 'true' : undefined}
+          $backgroundColor="var(--theme-primary)"
         >
           Work
         </NavLink>
@@ -52,6 +53,7 @@ export default function Navigation() {
         <NavLink
           href="/about"
           active={router.route.includes('about') ? 'true' : undefined}
+          $backgroundColor="var(--theme-primary)"
         >
           About
         </NavLink>

@@ -12,6 +12,7 @@ const Description = styled.p`
 `
 
 const Links = styled.p`
+  color: var(--theme-bg-02);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;

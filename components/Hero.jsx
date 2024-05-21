@@ -51,11 +51,21 @@ export default function Hero() {
         <Tagline>I help scientists with data science</Tagline>
         <Navigation>
           <NavigationItem>
-            <NavigationLink href="/projects">See my work</NavigationLink>
+            <NavigationLink
+              href="/projects"
+              $backgroundColor="var(--theme-primary)"
+            >
+              See my work
+            </NavigationLink>
           </NavigationItem>
 
           <NavigationItem>
-            <NavigationLink href="/about">Get to know me</NavigationLink>
+            <NavigationLink
+              href="/about"
+              $backgroundColor="var(--theme-primary)"
+            >
+              Get to know me
+            </NavigationLink>
           </NavigationItem>
         </Navigation>
       </Container>
