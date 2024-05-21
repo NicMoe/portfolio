@@ -126,6 +126,7 @@ ProjectCardsGrid.propTypes = {
       thumbnail: PropTypes.string,
       imgs: PropTypes.arrayOf(PropTypes.string),
       color: PropTypes.string,
+      dateId: PropTypes.string,
     }),
   ),
   showFilters: PropTypes.bool,
