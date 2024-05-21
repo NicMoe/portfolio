@@ -1,4 +1,4 @@
-import ImageCarrousel from '../components/ImageCarrousel'
+import ImageCarousel from '../components/ImageCarousel'
 import LayoutContainer from '../components/LayoutContainer'
 import StyledLink from '../components/StyledLink'
 import TitledContent from '../components/TitledContent'
@@ -6,39 +6,49 @@ import TitledContent from '../components/TitledContent'
 export default function AboutPage() {
   return (
     <LayoutContainer narrow>
-      <TitledContent heading="Hi there, nice to meet you!">
-        <ImageCarrousel
-          images={[`/me-0${Math.floor(Math.random() * 7) + 1}.jpeg`]}
+      <TitledContent heading="Hey folks!">
+        <ImageCarousel
+          images={[`/me-0${Math.floor(Math.random() * 1) + 1}.png`]}
         />
         <p>
-          I&apos;m a full-stack software engineer living in Long Beach,
-          California, with six years of experience in the worlds of engineering
-          and design, relentlessly advocating for simple user experiences,
-          accessibility, and robust engineering practices. My specialties are{' '}
-          <StyledLink href="/projects/bigfix-alluvial">
-            interactive data visualization
+          I&apos;m a data scientist with a decade experience supporting real
+          world data projects by{' '}
+          <StyledLink href="/projects/bee-swarm-for-distributions">
+            building analytics and visualization software
+          </StyledLink>{' '}
+          in health tech and for public health initiatives. I&apos;m passionate
+          about{' '}
+          <StyledLink href="/projects/aggregates-with-missing-data">
+            clear communication of data processes
           </StyledLink>{' '}
           and{' '}
-          <StyledLink href="/projects/ui-testing-talk">
-            UI software testing
+          <StyledLink href="/projects/public-safety-versus-itself">
+            research findings
           </StyledLink>
           .
         </p>
         <p>
-          I work as a software engineer at IBM, where I build{' '}
-          <StyledLink href="/projects/query-builder">
-            user-centered tools
-          </StyledLink>{' '}
-          for cybersecurity professionals. When I am not working, I am probably
-          working on my master&apos;s degree, thinking up a new{' '}
+          My upcoming projects focus on advancing scientific research workflows
+          through data analytics and machine learning within the biotech and
+          life science industries.
+        </p>
+        <p>
+          When not working, you can find me hosting{' '}
           <StyledLink
+            href="https://www.meetup.com/tech-by-the-beach/"
             target="_blank"
-            rel="noreferrer"
-            href="https://github.com/diego-codes/recipes"
           >
-            food experiment
+            Tech by the Beach
           </StyledLink>
-          , or going on long walks with my husband.
+          , taking{' '}
+          <StyledLink
+            href="https://www.instagram.com/nicwillmoe/"
+            target="_blank"
+          >
+            landscaping photography
+          </StyledLink>
+          , or hanging out with my husband and our kitten, Nandor the
+          Relentless.
         </p>
       </TitledContent>
     </LayoutContainer>

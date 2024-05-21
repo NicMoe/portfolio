@@ -36,7 +36,7 @@ export default function ProjectCardsGrid({
   showFilters,
   seeMoreLink,
 }) {
-  const [selectedFilters, setSelectedFitlers] = useState([])
+  const [selectedFilters, setSelectedFilters] = useState([])
 
   const tagFilters = projects
     .map(({ tags }) => tags)
@@ -57,11 +57,15 @@ export default function ProjectCardsGrid({
         )
       : projects
 
+  const descendingProjects = filteredProjects.sort((a, b) =>
+    b.dateId.localeCompare(a.dateId),
+  )
+
   const handleFilterToggle = name => {
     if (selectedFilters.includes(name)) {
-      setSelectedFitlers(val => val.filter(filter => filter !== name))
+      setSelectedFilters(val => val.filter(filter => filter !== name))
     } else {
-      setSelectedFitlers(val => [...val, name])
+      setSelectedFilters(val => [...val, name])
     }
   }
 
@@ -74,12 +78,12 @@ export default function ProjectCardsGrid({
               filters={tagFilters}
               selectedFilters={selectedFilters}
               onToggle={handleFilterToggle}
-              onReset={() => setSelectedFitlers([])}
+              onReset={() => setSelectedFilters([])}
             />
           </FiltersContainer>
         )}
         <Grid>
-          {filteredProjects.map(project => (
+          {descendingProjects.map(project => (
             <ProjectCard
               key={project.slug}
               id={project.slug}

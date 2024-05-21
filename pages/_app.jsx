@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps = {} }) {
   return (
     <>
       <Head>
-        <title>Diego Hernandez, Engineering &amp; UX portfolio</title>
+        <title>Nic Moe, Data Scientist</title>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />

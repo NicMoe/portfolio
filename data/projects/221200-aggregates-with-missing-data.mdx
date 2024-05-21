@@ -1,0 +1,46 @@
+---
+name: Handling missing data in surgical metrics
+type: project
+description: How I improved trust in data aggregations for clinical insights despite data gaps
+color: '#161616'
+
+tags:
+  - Project
+  - User experience research
+  - Data quality
+  - Missing data
+
+thumbnail:
+
+imgs:
+---
+
+## Context
+
+When does missing data impact interpretation and decision making? Hospital supply chain users need to compare surgical cases based on metrics like spend or patient outcomes, but missing data can skew the analyses. It's important to identify when missing data impacts interpretation to avoid misleading conclusions, ensuring transparency in the data provided and any aggregations or transformations. Since sporadic missing data may affect the metrics of interest, users might inadvertently draw invalid conclusions.
+
+## Process
+
+I led the development of a data check feature to ensure reliable data interpretation despite missing values in surgical case metrics. I didn’t have direct access to end users for this study, but I did have access to internal professionals who either had direct experience in roles similar to our end users or who deeply understood the client context. I investigated the impact of missing data on aggregate values by comparing medians calculated from available data and those imputed with extreme values, then sought expert opinions on the acceptability of these discrepancies for clinical and administrative decisions.
+
+## Solution
+
+Analysis revealed that professionals could trust medians with up to 20% missing values, but only 4% for 10th and 90th percentiles. Based on these findings, I recommended masking calculations missing data above these thresholds and marking values within thresholds but with missing data with an asterisk and explanation.
+
+## Outcome
+
+The feature changes introduced from this assessment greatly increased transparency into data quality for our users, and gave them trust that the data displayed is actionable and not subject to bias caused by missing data.
+
+## Insights
+
+I gained a greater appreciation for statistical vs. clinical/administrative significance. In this case, clinical/administrative significance refers to the level of difference from an expected value that would cause a potential change in action.
+
+Medians are far more robust than outlier percentiles. This makes sense, given that this exercise assumes missing values are extreme (“outlier”) values that need to make up a significant fraction of the set to meaningfully shift the middle of a typical distribution; whereas outlier percentiles (such as 10th or 90th percentiles) are defined as closer to those extreme points, leading to less stability.
+
+## What I would do differently next time
+
+I would have loved to spend more time working directly with clients to dig upstream and understand the cause of these missing data points.
+
+While I think this method I developed is replicable in similar contexts, I would caution others from directly applying the bottom line results I came up with elsewhere. That said, I’d love to replicate this process in other data contexts to understand if there are generalizations that could be made around trust in aggregate values when there are known missing data points.
+
+One unknown before this research was how sensitive aggregate metrics would be to missing data and if any missing data could make resulting aggregates suspect. If that had been the case, we may have needed to rethink this product feature to maintain trust in the product itself. Fortunately, missing data wasn’t common within our clients’ data, and aggregate metrics were relatively robust to data missingness, so this didn’t challenge the product but rather strengthened it. Given enough time and resources, we may have wanted to confirm that question of data trust with our users.

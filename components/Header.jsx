@@ -57,7 +57,7 @@ export default function Header({ children }) {
         <LayoutContainer backgroundColor={theme.bg03} padding="1.2rem 1.5rem">
           <Container>
             <Title>
-              <TitleLink href="/">Diego Hernandez</TitleLink>
+              <TitleLink href="/">Nic Moe</TitleLink>
             </Title>
             {children && <div>{children}</div>}
           </Container>

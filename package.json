@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/diego-codes/diego-codes.github.io/"
+    "url": "https://diegohernandez.dev/"
   },
   "dependencies": {
     "eslint-config-next": "^14.2.3",

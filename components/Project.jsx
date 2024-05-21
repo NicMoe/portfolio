@@ -4,7 +4,7 @@ import { DefaultScale } from '../utils/typography.utils'
 import LayoutContainer from './LayoutContainer'
 import StyledLink, { styles as linkStyles } from './StyledLink'
 import TagsList from './TagsList'
-import ImageCarrousel from './ImageCarrousel'
+import ImageCarousel from './ImageCarousel'
 
 const Description = styled.p`
   font-size: ${DefaultScale.h4};
@@ -106,7 +106,7 @@ export default function Project({
     </>
   )
 
-  if (imgs.length === 0) {
+  if (!imgs || imgs.length === 0) {
     return (
       <LayoutContainer narrow>
         {topContent}
@@ -119,7 +119,7 @@ export default function Project({
     <>
       <LayoutContainer narrow>{topContent}</LayoutContainer>
       {imgs.length > 0 && (
-        <ImageCarrousel
+        <ImageCarousel
           images={imgs.map(img => `/projects/${img}`)}
           backgroundColor={color}
         />
