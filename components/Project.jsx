@@ -8,7 +8,7 @@ import ImageCarousel from './ImageCarousel'
 
 const Description = styled.p`
   font-size: ${DefaultScale.h4};
-  color: ${props => props.theme.text02};
+  color: var(--theme-bg-02);
 `
 
 const Links = styled.p`
@@ -70,12 +70,12 @@ export default function Project({
   next,
   color,
   links = [],
-  children = '',
+  children,
 }) {
   const topContent = (
     <>
       <h1>{name}</h1>
-      <TagsList tags={tags} />
+      <TagsList tags={tags} tagColor="var(--theme-bg-02)" />
       <Description>{description}</Description>
 
       {links && (
@@ -97,8 +97,7 @@ export default function Project({
 
   const bottomContent = (
     <>
-      {/* eslint-disable-next-line react/no-danger */}
-      <Content dangerouslySetInnerHTML={{ __html: children }} />
+      <Content>{children}</Content>
       <ProjectNavigationLinks>
         {previous && <StyledLink href={previous}>Previous project</StyledLink>}
         {next && <StyledLink href={next}>Next project</StyledLink>}
@@ -143,5 +142,5 @@ Project.propTypes = {
       text: PropTypes.string,
     }),
   ),
-  children: PropTypes.string,
+  children: PropTypes.node,
 }

@@ -4,13 +4,16 @@ import { getAllProjects } from '../../lib/projects'
 
 export async function getStaticProps() {
   const projects = getAllProjects()
+    .map(({ frontmatter, slug }) => ({
+      ...frontmatter,
+      slug,
+    }))
+    .filter(project => project.dateId)
+    .sort((a, b) => b.dateId.localeCompare(a.dateId))
 
   return {
     props: {
-      projects: projects.map(({ frontmatter, slug }) => ({
-        ...frontmatter,
-        slug,
-      })),
+      projects,
     },
   }
 }

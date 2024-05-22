@@ -1,4 +1,4 @@
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
 import StyledLink from './StyledLink'
 import LayoutContainer from './LayoutContainer'
@@ -39,9 +39,11 @@ const NavigationItem = styled.li``
 const NavigationLink = styled(StyledLink)``
 
 export default function Hero() {
-  const theme = useTheme()
   return (
-    <LayoutContainer backgroundColor={theme.bg03}>
+    <LayoutContainer
+      backgroundColor="var(--theme-bg-03)"
+      color="var(--theme-text-03)"
+    >
       <Container>
         <Hello>
           Hello, my name is <Name>Nic Moe</Name>
@@ -49,11 +51,21 @@ export default function Hero() {
         <Tagline>I help scientists with data science</Tagline>
         <Navigation>
           <NavigationItem>
-            <NavigationLink href="/projects">See my work</NavigationLink>
+            <NavigationLink
+              href="/projects"
+              $backgroundColor="var(--theme-primary)"
+            >
+              See my work
+            </NavigationLink>
           </NavigationItem>
 
           <NavigationItem>
-            <NavigationLink href="/about">Get to know me</NavigationLink>
+            <NavigationLink
+              href="/about"
+              $backgroundColor="var(--theme-primary)"
+            >
+              Get to know me
+            </NavigationLink>
           </NavigationItem>
         </Navigation>
       </Container>

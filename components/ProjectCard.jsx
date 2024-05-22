@@ -21,13 +21,14 @@ const ReadMoreButton = styled(StyledLink)`
 const Container = styled(Link)`
   color: inherit;
   text-decoration: none;
-  background-color: ${props => props.theme.bg02};
+  background-color: var(--theme-bg-02);
+  color: var(--theme-text-02);
   display: flex;
   flex-flow: column;
   transition: transform 200ms ease-in-out;
 
   &:focus {
-    outline: 2px solid ${props => props.theme.primary};
+    outline: 2px solid var(--theme-primary);
   }
 
   &:focus,
@@ -47,7 +48,7 @@ const ImageContainer = styled.div`
   block-size: 12.5em;
   inline-size: 100%;
   margin-block-end: 1.3em;
-  background: ${props => props.color || props.theme.bg03};
+  background: ${props => props.color || 'var(--theme-bg-03)'};
   position: relative;
 `
 
@@ -57,17 +58,20 @@ const Heading = styled.h2`
   font-size: ${DefaultScale.h2};
   padding-inline-start: ${padding};
   padding-inline-end: ${padding};
+  color: var(--theme-text-02);
 `
 
 const Summary = styled.p`
   flex: 1 1 auto;
   padding-inline-start: ${padding};
   padding-inline-end: ${padding};
+  color: var(--theme-text-02);
 `
 
 const Footer = styled.footer`
   padding: ${padding};
   overflow: hidden;
+  color: var(--theme-text-02);
 `
 
 export default function TitledContent({

@@ -30,6 +30,7 @@ const SeeMoreButtonContainer = styled.div`
 const SeeMoreButton = styled(Button)`
   ${getResponseTypeStyle(Size.h5)}
 `
+
 export default function ProjectCardsGrid({
   heading = 'Projects',
   projects = [],
@@ -100,7 +101,12 @@ export default function ProjectCardsGrid({
 
         {seeMoreLink && (
           <SeeMoreButtonContainer>
-            <SeeMoreButton as="a" href={`/projects#${seeMoreLink}`}>
+            <SeeMoreButton
+              as="a"
+              href={`/projects#${seeMoreLink}`}
+              $buttonColor="var(--theme-bg-02)"
+              $buttonHoverColor="var(--theme-bg-03)"
+            >
               See more projects
             </SeeMoreButton>
           </SeeMoreButtonContainer>
@@ -120,6 +126,7 @@ ProjectCardsGrid.propTypes = {
       thumbnail: PropTypes.string,
       imgs: PropTypes.arrayOf(PropTypes.string),
       color: PropTypes.string,
+      dateId: PropTypes.string,
     }),
   ),
   showFilters: PropTypes.bool,

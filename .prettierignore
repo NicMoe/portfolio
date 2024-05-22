@@ -1,3 +1,5 @@
+# .prettierignore
+
 # build output
 out
 .next
@@ -26,3 +28,6 @@ coverage
 # Vercel
 .vercel
 .now
+
+# Ignore .mdx files
+*.mdx

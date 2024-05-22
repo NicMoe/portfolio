@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types'
-import remark from 'remark'
-import html from 'remark-html'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 import Project from '../../components/Project'
 import { getAllProjects, getProjectBySlug } from '../../lib/projects'
 
 export async function getStaticProps({ params }) {
   const project = getProjectBySlug(params.id)
 
-  const markdown = await remark()
-    .use(html)
-    .process(project.content || '')
-  const content = markdown.toString()
+  const mdxSource = await serialize(project.content || '')
 
   return {
     props: {
       ...project.frontmatter,
-      content,
+      mdxSource,
     },
   }
 }
@@ -33,14 +30,16 @@ export async function getStaticPaths() {
   }
 }
 
-export default function ProjectPage({ content = '', ...rest }) {
+export default function ProjectPage({ mdxSource, ...rest }) {
   return (
     <main>
-      <Project {...rest}>{content}</Project>
+      <Project {...rest}>
+        <MDXRemote {...mdxSource} />
+      </Project>
     </main>
   )
 }
 
 ProjectPage.propTypes = {
-  content: PropTypes.string,
+  mdxSource: PropTypes.object.isRequired,
 }

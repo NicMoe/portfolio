@@ -3,13 +3,14 @@ import styled, { css } from 'styled-components'
 
 export const hoverStyles = css`
   background-size: 100% 100%;
-  color: ${props => props.theme.bg01};
+  color: ${({ $backgroundColor }) =>
+    $backgroundColor ? 'var(--theme-bg-03)' : 'var(--theme-primary)'};
 `
 
 export const styles = css`
   background: linear-gradient(
       transparent 0%,
-      ${props => props.theme.primary} 0%
+      ${({ $backgroundColor }) => $backgroundColor || 'var(--theme-bg-03)'} 0%
     )
     no-repeat;
   background-size: 100% 2px;
@@ -22,6 +23,8 @@ export const styles = css`
   }
 `
 
-export default styled(Link)`
+const StyledLink = styled(Link)`
   ${styles}
 `
+
+export default StyledLink

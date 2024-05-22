@@ -11,18 +11,27 @@ export default createGlobalStyle`
       box-sizing: inherit;
   }
 
+  :root {
+    --theme-bg-01: hsl(49, 90%, 95%);
+    --theme-text-01: hsl(0deg 0% 0%);
+    --theme-bg-02: hsl(182, 70%, 30%);
+    --theme-text-02: hsl(0deg 0% 100%);
+    --theme-bg-03: hsl(27.78deg 80% 50%);
+    --theme-text-03: hsl(0deg 0% 100%);
+    --theme-primary: hsl(0deg 0% 100%);
+  }
+
   html {
     box-sizing: border-box;
     font-family: 'Fira Sans', 'Helvetica Neue', 'Arial', sans-serif;
     font-weight: 300;
     line-height: 1.75;
-    
-    background-color: ${props => props.theme.bg03};
-    color: ${props => props.theme.text01}
+    background-color: var(--theme-bg-03);
   }
-  
+
   body {
-    background-color: ${props => props.theme.bg01};
+    background-color: var(--theme-bg-01);
+    color: var(--theme-text-01);
   }
 
   body, ol, ul {
@@ -60,11 +69,11 @@ export default createGlobalStyle`
     block-size: auto;
   }
 
-  a:any-link  {
+  :any-link {
     color: inherit;
-    
+
     &:focus {
-      outline: 2px solid ${props => props.theme.primary};
+      outline: 2px solid var(--theme-primary);
     }
   }
 

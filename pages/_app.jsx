@@ -1,27 +1,31 @@
 import Head from 'next/head'
 import PropTypes from 'prop-types'
-import { ThemeProvider } from 'styled-components'
+import { MDXProvider } from '@mdx-js/react'
 import GlobalStyles from '../components/GlobalStyles'
 import Page from '../components/Page'
-import theme from '../utils/theme.utils'
 
-export default function MyApp({ Component, pageProps = {} }) {
+// Define any custom components you want to use in MDX files
+const components = {
+  // Example: code: (props) => <pre style={{ color: 'tomato' }} {...props} />
+}
+
+export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
         <title>Nic Moe, Data Scientist</title>
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
+      <GlobalStyles />
+      <MDXProvider components={components}>
         <Page>
           <Component {...pageProps} />
         </Page>
-      </ThemeProvider>
+      </MDXProvider>
     </>
   )
 }
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.objectOf(PropTypes.any),
+  pageProps: PropTypes.object,
 }

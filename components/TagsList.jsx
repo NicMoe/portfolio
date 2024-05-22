@@ -10,8 +10,8 @@ const List = styled.ul`
 
 const Tag = styled.li`
   ${getResponseTypeStyle(Size.small)}
-  border: 1px solid ${props => props.theme.primary};
-  color: ${props => props.theme.primary};
+  border: 1px solid ${props => props.$tagColor || 'var(--theme-primary)'};
+  color: ${props => props.$tagColor || 'var(--theme-primary)'};
   display: inline-block;
   padding: 0.15em 0.6em;
   border-radius: 0.2em;
@@ -19,7 +19,7 @@ const Tag = styled.li`
   margin-inline-end: 0.7em;
 `
 
-export default function TagsList({ tags = [] }) {
+export default function TagsList({ tags = [], tagColor }) {
   if (tags.length === 0) {
     return null
   }
@@ -27,7 +27,9 @@ export default function TagsList({ tags = [] }) {
   return (
     <List>
       {tags.map(tag => (
-        <Tag key={tag}>{tag}</Tag>
+        <Tag key={tag} $tagColor={tagColor}>
+          {tag}
+        </Tag>
       ))}
     </List>
   )
@@ -35,4 +37,5 @@ export default function TagsList({ tags = [] }) {
 
 TagsList.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
+  tagColor: PropTypes.string,
 }
