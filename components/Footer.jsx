@@ -50,7 +50,7 @@ export default function Footer() {
     >
       <Container>
         <Copyright>
-          Site by{' '}
+          Site design by{' '}
           <StyledLink
             href={pgk.repository.url}
             target="_blank"

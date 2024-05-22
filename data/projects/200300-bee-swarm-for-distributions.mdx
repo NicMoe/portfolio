@@ -33,38 +33,28 @@ There are many ways to visualize and compare numerical data distributions, typic
 
 The original bee swarm chart included a blue dot for each surgical case using a given product, spaced along the x-axis which represented the total costs for all products utilized in a surgical case. After some iteration, we added additional features:
 
-- labeled, vertical lines to represent the median value
+- Labeled, vertical lines to represent the median value
 - 10th and 90th percentile lines for dispersed distributions
-- tooltips with case details, which I later replaced by a more detailed pop up modal
-- option to represent distributions of numerical data fields other than cost per case, such as operating room (OR) time and length of stay
-- feature permitting users to highlight certain cases, such as those performed by a particular surgeon, and compare the distribution of highlighted cases against those which are not in the selected set
+- Tooltips with surgical case details, which I later replaced by a more detailed pop up modal
+- An option to represent distributions of numerical data fields other than cost per case, such as operating room (OR) time and length of stay
+- A feature permitting users to highlight certain cases, such as those performed by a particular surgeon, and compare the distribution of highlighted cases against those which are not in the selected set
 
 ## Outcome
 
-I later identified other features that could make use of the bee swarm chart component, for users to see and understand data distributions of other data sets. Because of its visual appeal, it has been used extensively in marketing materials for the software.
+I later identified other product features that could make use of the bee swarm chart component, for users to see and understand data distributions of other data sets. Because of its visual appeal, it has been used extensively in marketing materials for the software.
 
 ## Insights
 
-<b>Data interpretation</b>: Through user testing, I discovered that people
-sometimes need a bit of direction (in the form of descriptive text and other
-visual indicators) to know how to use an interactive tool or to understand what
-an unfamiliar chart type represents. Another discovery is that with certain
-distributions it can be hard to identify what “typical” or “outlier” means, so
-we added a median line, and when they differed considerably from the median,
-10th and 90th percentile lines.
+<b>Data interpretation</b>: Through user testing, I discovered that people sometimes need a bit of direction (in the form of descriptive text and other visual indicators) to know how to use an interactive tool or to understand what an unfamiliar chart type represents. Another discovery is that with certain distributions it can be hard to identify what “typical” or “outlier” means, so we added a median line and, when they differed considerably from the median, 10th and 90th percentile lines.
 
-<b>Data actionability</b>: This was a good exercise in learning that beauty and
-ease of use doesn’t make data transparency inherently actionable. Even for users
-who could interpret the distributions of case costs for surgical cases using a
-given product, they didn’t know what to do with that information without a ton
-of extra detail that we eventually added in the form of tooltips and popup
-modals.
+<b>Data actionability</b>: This was a good exercise in learning that beauty and ease of use doesn’t make data transparency inherently actionable. Even for users who could interpret the distributions of case costs for surgical cases using a given product, they didn’t know what to do with that information without a ton of extra detail that we eventually added in the form of tooltips and popup modals.
 
-<b>Technical experience</b>: This project gave me experience thinking how to
-communicate distributions (and distribution comparison) to non-technical users.
-As well, I learned how to visualize scatterplots with d3.js and make front-end
-performance improvements using web workers.
+<b>Technical experience</b>: This project gave me experience thinking how to communicate distributions (and distribution comparison) to non-technical users. As well, I learned how to visualize scatterplots with d3.js and how to make front-end performance improvements using web workers.
 
 ## What I would do differently next time
 
-With lots of of data and limited browser memory, I learned to consider chart performance! Rendering bee swarm charts can become slow on the front end when there are thousands of items. In this case, one of my colleagues suggested and set up parallel threads using web workers. As well, bee swarm charts with thousands of items (e.g., surgical cases) can be impractical for a user to dig into, so another colleague set up an alternate density distribution chart that rendered by default; eventually, we made it so that users could jump back and forth between the two ways of visualizing distributions. After trial and error, we found that a good breakpoint based on usability and performance was about 750 "bees", so anything above that count rendered as the density chart by default instead.
+With lots of of data and limited browser memory, I learned to consider chart performance! Rendering bee swarm charts can become slow on the front end when there are thousands of items. In this case, one of my colleagues suggested and set up parallel threads using web workers.
+
+As well, bee swarm charts with thousands of items (e.g., surgical cases) can be impractical for a user to dig into, so another colleague set up an alternate density distribution chart that rendered by default; eventually, we made it so that users could jump back and forth between the two ways of visualizing distributions.
+
+After trial and error, we found that a good breakpoint based on usability and performance was about 750 "bees", so anything above that count rendered as the density chart by default instead.

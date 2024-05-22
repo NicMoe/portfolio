@@ -37,7 +37,7 @@ export default class MyDocument extends Document {
             content="I'm a data scientist working to advance scientific research workflows through data analytics and machine learning."
           />
 
-          <meta property="og:url" content="https://www.diegohernandez.dev/" />
+          <meta property="og:url" content="https://www.nicmoe.io/" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Nic Moe, Data Scientist" />
           <meta
@@ -46,7 +46,7 @@ export default class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://diegohernandez.dev/_next/image?url=%2Fme-03.jpeg&w=3840&q=75"
+            content="/me-01.png"
           />
 
           <link rel="preconnect" href="https://fonts.gstatic.com" />

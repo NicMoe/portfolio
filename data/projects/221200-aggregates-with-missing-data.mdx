@@ -17,15 +17,15 @@ imgs:
 
 ## Context
 
-When does missing data impact interpretation and decision making? Hospital supply chain users need to compare surgical cases based on metrics like spend or patient outcomes, but missing data can skew the analyses. It's important to identify when missing data impacts interpretation to avoid misleading conclusions, ensuring transparency in the data provided and any aggregations or transformations. Since sporadic missing data may affect the metrics of interest, users might inadvertently draw invalid conclusions.
+<i>When does missing data impact interpretation and decision making?</i> Hospital supply chain users need to compare surgical cases based on metrics like spend or patient outcomes, but missing data can skew the analyses. It's important to identify when missing data impacts interpretation to avoid misleading conclusions, ensuring transparency in the data provided and clarity around any aggregations or transformations. Since sporadic missing data may affect the metrics of interest, users might inadvertently draw invalid conclusions.
 
 ## Process
 
-I led the development of a data check feature to ensure reliable data interpretation despite missing values in surgical case metrics. I didn’t have direct access to end users for this study, but I did have access to internal professionals who either had direct experience in roles similar to our end users or who deeply understood the client context. I investigated the impact of missing data on aggregate values by comparing medians calculated from available data and those imputed with extreme values, then sought expert opinions on the acceptability of these discrepancies for clinical and administrative decisions.
+To ensure reliable data interpretation given missing values in surgical case metrics, I led the development of a new data check feature. I didn’t have direct access to end users for this study, but I did have access to internal professionals who either had direct experience in roles similar to our end users or who deeply understood the client context. I investigated the impact of missing data on aggregate values by comparing medians calculated from available data against those imputed with extreme values. I then sought expert opinions on the acceptability of these types of discrepancies for clinical and administrative decisions.
 
 ## Solution
 
-Analysis revealed that professionals could trust medians with up to 20% missing values, but only 4% for 10th and 90th percentiles. Based on these findings, I recommended masking calculations missing data above these thresholds and marking values within thresholds but with missing data with an asterisk and explanation.
+My analysis revealed that professionals could trust medians with up to 20% missing values, but for 10th and 90th percentiles that acceptibility faded if any more than 4% of values were missing. Based on these findings, I recommended masking calculations when the scale of missing data is above these thresholds as well as marking aggregate values with any missing data, but within the defined thresholds, with an asterisk and explanation.
 
 ## Outcome
 
@@ -43,4 +43,4 @@ I would have loved to spend more time working directly with clients to dig upstr
 
 While I think this method I developed is replicable in similar contexts, I would caution others from directly applying the bottom line results I came up with elsewhere. That said, I’d love to replicate this process in other data contexts to understand if there are generalizations that could be made around trust in aggregate values when there are known missing data points.
 
-One unknown before this research was how sensitive aggregate metrics would be to missing data and if any missing data could make resulting aggregates suspect. If that had been the case, we may have needed to rethink this product feature to maintain trust in the product itself. Fortunately, missing data wasn’t common within our clients’ data, and aggregate metrics were relatively robust to data missingness, so this didn’t challenge the product but rather strengthened it. Given enough time and resources, we may have wanted to confirm that question of data trust with our users.
+One unknown before this research was how sensitive aggregate metrics would be to missing data and if any missing data could make resulting aggregates suspect. If that had been the case, we may have needed to rethink this product feature to maintain trust in the product itself. Fortunately, missing data wasn’t common within our clients’ data, and aggregate metrics were relatively robust to data missingness, so this assessment didn’t challenge the product but rather strengthened it. Given enough time and resources, we may have wanted to confirm the level of data trust around this feature with our users.
