@@ -12,7 +12,6 @@ const Description = styled.p`
 `
 
 const Links = styled.p`
-  color: var(--theme-bg-02);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -71,7 +70,7 @@ export default function Project({
   next,
   color,
   links = [],
-  children = '',
+  children,
 }) {
   const topContent = (
     <>
@@ -98,8 +97,7 @@ export default function Project({
 
   const bottomContent = (
     <>
-      {/* eslint-disable-next-line react/no-danger */}
-      <Content dangerouslySetInnerHTML={{ __html: children }} />
+      <Content>{children}</Content>
       <ProjectNavigationLinks>
         {previous && <StyledLink href={previous}>Previous project</StyledLink>}
         {next && <StyledLink href={next}>Next project</StyledLink>}
@@ -144,5 +142,5 @@ Project.propTypes = {
       text: PropTypes.string,
     }),
   ),
-  children: PropTypes.string,
+  children: PropTypes.node,
 }
