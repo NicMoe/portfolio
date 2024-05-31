@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
@@ -8,6 +9,7 @@ const Container = styled.div`
   display: flex;
   align-items: baseline;
 `
+
 const List = styled.ul`
   display: flex;
   list-style: none;
@@ -37,23 +39,40 @@ const Count = styled.span`
   ${getResponseTypeStyle(Size.small)};
 `
 
+const ToggleButton = styled(Button)`
+  margin-left: 1em;
+  font-weight: 400;
+  color: var(--theme-bg-04);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--theme-bg-04);
+    text-decoration: underline;
+  }
+`
+
 export default function ProjectFilterList({
   filters = {},
   selectedFilters = [],
   onToggle = () => {},
   onReset = () => {},
 }) {
-  const filterEntries = Object.entries(filters)
+  const [showAllFilters, setShowAllFilters] = useState(false);
+  const filterEntries = Object.entries(filters);
+  const filteredEntries = filterEntries.filter(([, count]) => count > 1);
+  const additionalFilters = filterEntries.filter(([, count]) => count <= 1);
 
   if (filterEntries.length === 0) {
-    return null
+    return null;
   }
 
   return (
     <Container>
       <Label>Filter by:</Label>
       <List>
-        {filterEntries
+        {filteredEntries
           .sort((a, b) => b[1] - a[1])
           .map(([filter, count]) => (
             <li key={filter}>
@@ -65,12 +84,29 @@ export default function ProjectFilterList({
               </ProjectFilter>
             </li>
           ))}
+        {showAllFilters && additionalFilters
+          .sort((a, b) => b[1] - a[1])
+          .map(([filter, count]) => (
+            <li key={filter}>
+              <ProjectFilter
+                selected={selectedFilters.includes(filter)}
+                onToggle={() => onToggle(filter)}
+              >
+                {filter} <Count>[{count}]</Count>
+              </ProjectFilter>
+            </li>
+          ))}
+        {additionalFilters.length > 0 && (
+          <ToggleButton onClick={() => setShowAllFilters(!showAllFilters)}>
+            {showAllFilters ? 'limit filter options' : '+ show more filters'}
+          </ToggleButton>
+        )}
         {selectedFilters.length > 0 && (
           <ResetButton onClick={onReset}>Reset</ResetButton>
         )}
       </List>
     </Container>
-  )
+  );
 }
 
 ProjectFilterList.propTypes = {
