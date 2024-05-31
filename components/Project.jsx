@@ -120,7 +120,7 @@ export default function Project({
       {imgs.length > 0 && (
         <ImageCarousel
           images={imgs.map(img => `/projects/${img}`)}
-          backgroundColor={color}
+          backgroundColor={color || 'var(--theme-bg-04)'}
         />
       )}
       <LayoutContainer narrow>{bottomContent}</LayoutContainer>

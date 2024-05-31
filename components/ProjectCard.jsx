@@ -48,7 +48,7 @@ const ImageContainer = styled.div`
   block-size: 12.5em;
   inline-size: 100%;
   margin-block-end: 1.3em;
-  background: ${props => props.color || 'var(--theme-bg-03)'};
+  background: ${props => props.color || 'var(--theme-bg-04)'};
   position: relative;
 `
 
