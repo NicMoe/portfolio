@@ -56,6 +56,7 @@ const Heading = styled.h2`
   margin-block-start: 0;
   margin-block-end: 0.4em;
   font-size: ${DefaultScale.h2};
+  font-weight: 400;
   padding-inline-start: ${padding};
   padding-inline-end: ${padding};
   color: var(--theme-text-02);
