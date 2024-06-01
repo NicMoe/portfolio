@@ -14,7 +14,7 @@ export default createGlobalStyle`
   :root {
     --theme-bg-01: hsl(49, 90%, 95%);
     --theme-text-01: hsl(0deg 0% 0%);
-    --theme-bg-02: hsl(182, 70%, 30%);
+    --theme-bg-02: hsl(213deg, 70%, 9%);
     --theme-text-02: hsl(0 0% 100%);
     --theme-bg-03: hsl(27.78 80% 50%);
     --theme-text-03: hsl(0 0% 100%);
