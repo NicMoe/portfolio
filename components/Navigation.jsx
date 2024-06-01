@@ -45,17 +45,16 @@ export default function Navigation() {
           active={router.route.includes('projects') ? 'true' : undefined}
           $backgroundColor="var(--theme-primary)"
         >
-          Work
+          Projects
         </NavLink>
       </li>
 
       <li>
         <NavLink
-          href="/about"
-          active={router.route.includes('about') ? 'true' : undefined}
+          href="mailto:nicmoe.io@gmail.com"
           $backgroundColor="var(--theme-primary)"
         >
-          About
+          Contact me
         </NavLink>
       </li>
     </List>

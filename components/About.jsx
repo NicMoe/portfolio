@@ -24,7 +24,7 @@ export default function Hero() {
     </p>
     <p>
     My upcoming projects focus on advancing scientific research workflows
-    through statistical modeling, machine learning, and data analytics within the biotech and
+    through <b>statistical modeling</b>, <b>machine learning</b>, and <b>data analytics</b> within the biotech and
     life science industries.
     </p>
     <p>

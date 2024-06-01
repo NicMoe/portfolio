@@ -61,10 +61,10 @@ export default function Hero() {
 
           <NavigationItem>
             <NavigationLink
-              href="/about"
+              href="mailto:nicmoe.io@gmail.com"
               $backgroundColor="var(--theme-primary)"
             >
-              Get to know me
+              Let's work together
             </NavigationLink>
           </NavigationItem>
         </Navigation>
