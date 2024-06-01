@@ -33,7 +33,7 @@ const Container = styled(Link)`
 
   &:focus,
   &:hover {
-    outline: 5px solid var(--theme-bg-04);
+    outline: 5px solid var(--theme-bg-03);
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
     z-index: 1;
 
