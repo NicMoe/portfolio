@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import Hero from '../components/Hero'
+import About from '../components/About'
 import ProjectCardsGrid from '../components/ProjectCardsGrid'
 import { getAllProjects } from '../lib/projects'
 
@@ -24,6 +25,7 @@ export default function Home({ projects = [] }) {
   return (
     <>
       <Hero />
+      <About />
       <ProjectCardsGrid
         heading="Featured projects"
         projects={featuredProjects}

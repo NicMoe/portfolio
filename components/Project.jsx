@@ -11,7 +11,7 @@ const Description = styled.p`
   color: var(--theme-bg-02);
 `
 
-const Links = styled.p`
+const Links = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -24,6 +24,16 @@ const Links = styled.p`
       margin-block-end: 0;
       margin-inline-end: 0;
     }
+  }
+`
+
+const Points = styled.ul`
+  font-size: 0.8em;
+  padding-inline-start: 1em;
+  list-style: disc;
+
+  li {
+    margin-block-end: 0.5em;
   }
 `
 
@@ -70,15 +80,29 @@ export default function Project({
   next,
   color,
   links = [],
+  points = [],
   children,
 }) {
   const topContent = (
     <>
       <h1>{name}</h1>
       <TagsList tags={tags} tagColor="var(--theme-bg-02)" />
+
+      {points.length > 0 && (
+        <Points>
+          {points.map(point => (
+            <li key={point}>{point}</li>
+          ))}
+        </Points>
+      )}
+    </>
+  )
+
+  const middleContent = (
+    <>
       <Description>{description}</Description>
 
-      {links && (
+      {links.length > 0 && (
         <Links>
           {links.map(link => (
             <StyledLink
@@ -109,6 +133,7 @@ export default function Project({
     return (
       <LayoutContainer narrow>
         {topContent}
+        {middleContent}
         {bottomContent}
       </LayoutContainer>
     )
@@ -120,10 +145,13 @@ export default function Project({
       {imgs.length > 0 && (
         <ImageCarousel
           images={imgs.map(img => `/projects/${img}`)}
-          backgroundColor={color}
+          backgroundColor={color || 'var(--theme-bg-04)'}
         />
       )}
-      <LayoutContainer narrow>{bottomContent}</LayoutContainer>
+      <LayoutContainer narrow>
+        {middleContent}
+        {bottomContent}
+      </LayoutContainer>
     </>
   )
 }
@@ -142,5 +170,6 @@ Project.propTypes = {
       text: PropTypes.string,
     }),
   ),
+  points: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,
 }

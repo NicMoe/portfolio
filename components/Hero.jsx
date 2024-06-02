@@ -41,8 +41,8 @@ const NavigationLink = styled(StyledLink)``
 export default function Hero() {
   return (
     <LayoutContainer
-      backgroundColor="var(--theme-bg-03)"
-      color="var(--theme-text-03)"
+      backgroundColor="var(--theme-bg-04)"
+      color="var(--theme-text-04)"
     >
       <Container>
         <Hello>
@@ -61,10 +61,10 @@ export default function Hero() {
 
           <NavigationItem>
             <NavigationLink
-              href="/about"
+              href="mailto:nicmoe.io@gmail.com"
               $backgroundColor="var(--theme-primary)"
             >
-              Get to know me
+              Let&apos;s work together
             </NavigationLink>
           </NavigationItem>
         </Navigation>

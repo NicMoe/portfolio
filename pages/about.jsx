@@ -11,7 +11,7 @@ export default function AboutPage() {
           images={[`/me-0${Math.floor(Math.random() * 1) + 1}.png`]}
         />
         <p>
-          I&apos;m a data scientist with a decade experience supporting real
+          I&apos;m a data scientist with a decade of experience supporting real
           world data projects by{' '}
           <StyledLink href="/projects/bee-swarm-for-distributions">
             building analytics and visualization software
@@ -29,7 +29,7 @@ export default function AboutPage() {
         </p>
         <p>
           My upcoming projects focus on advancing scientific research workflows
-          through data analytics and machine learning within the biotech and
+          through statistical modeling, machine learning, and data analytics within the biotech and
           life science industries.
         </p>
         <p>
@@ -45,7 +45,7 @@ export default function AboutPage() {
             href="https://www.instagram.com/nicwillmoe/"
             target="_blank"
           >
-            landscaping photography
+            landscape photography
           </StyledLink>
           , or hanging out with my husband and our kitten, Nandor the
           Relentless.

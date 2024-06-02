@@ -33,7 +33,7 @@ const Container = styled(Link)`
 
   &:focus,
   &:hover {
-    transform: scale(1.04);
+    outline: 5px solid var(--theme-bg-03);
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
     z-index: 1;
 
@@ -48,7 +48,7 @@ const ImageContainer = styled.div`
   block-size: 12.5em;
   inline-size: 100%;
   margin-block-end: 1.3em;
-  background: ${props => props.color || 'var(--theme-bg-03)'};
+  background: ${props => props.color || 'var(--theme-bg-04)'};
   position: relative;
 `
 
@@ -56,6 +56,7 @@ const Heading = styled.h2`
   margin-block-start: 0;
   margin-block-end: 0.4em;
   font-size: ${DefaultScale.h2};
+  font-weight: 400;
   padding-inline-start: ${padding};
   padding-inline-end: ${padding};
   color: var(--theme-text-02);
