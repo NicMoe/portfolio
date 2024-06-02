@@ -90,8 +90,8 @@ export default function Project({
 
       {points.length > 0 && (
         <Points>
-          {points.map((point, index) => (
-            <li key={index}>{point}</li>
+          {points.map(point => (
+            <li key={point}>{point}</li>
           ))}
         </Points>
       )}

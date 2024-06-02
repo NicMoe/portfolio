@@ -64,7 +64,7 @@ export default function Hero() {
               href="mailto:nicmoe.io@gmail.com"
               $backgroundColor="var(--theme-primary)"
             >
-              Let's work together
+              Let&apos;s work together
             </NavigationLink>
           </NavigationItem>
         </Navigation>
