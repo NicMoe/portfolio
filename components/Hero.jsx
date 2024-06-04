@@ -52,7 +52,7 @@ export default function Hero() {
         <Navigation>
           <NavigationItem>
             <NavigationLink
-              href="/projects"
+              href="/posts"
               $backgroundColor="var(--theme-primary)"
             >
               See my work

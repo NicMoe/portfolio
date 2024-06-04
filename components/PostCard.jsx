@@ -89,7 +89,7 @@ export default function TitledContent({
       <Header>
         <ImageContainer color={color}>
           {img && (
-            <Image src={`/projects/${img}`} layout="fill" objectFit="contain" />
+            <Image src={`/posts/${img}`} layout="fill" objectFit="contain" />
           )}
         </ImageContainer>
         <Heading>{heading}</Heading>

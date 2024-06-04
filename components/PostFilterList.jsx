@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import Button from './Button'
-import ProjectFilter from './ProjectFilter'
+import PostFilter from './PostFilter'
 
 const Container = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ const ToggleButton = styled(Button)`
   }
 `
 
-export default function ProjectFilterList({
+export default function PostFilterList({
   filters = {},
   selectedFilters = [],
   onToggle = () => {},
@@ -76,24 +76,24 @@ export default function ProjectFilterList({
           .sort((a, b) => b[1] - a[1])
           .map(([filter, count]) => (
             <li key={filter}>
-              <ProjectFilter
+              <PostFilter
                 selected={selectedFilters.includes(filter)}
                 onToggle={() => onToggle(filter)}
               >
                 {filter} <Count>[{count}]</Count>
-              </ProjectFilter>
+              </PostFilter>
             </li>
           ))}
         {showAllFilters && additionalFilters
           .sort((a, b) => b[1] - a[1])
           .map(([filter, count]) => (
             <li key={filter}>
-              <ProjectFilter
+              <PostFilter
                 selected={selectedFilters.includes(filter)}
                 onToggle={() => onToggle(filter)}
               >
                 {filter} <Count>[{count}]</Count>
-              </ProjectFilter>
+              </PostFilter>
             </li>
           ))}
         {additionalFilters.length > 0 && (
@@ -109,7 +109,7 @@ export default function ProjectFilterList({
   );
 }
 
-ProjectFilterList.propTypes = {
+PostFilterList.propTypes = {
   filters: PropTypes.objectOf(PropTypes.number),
   selectedFilters: PropTypes.arrayOf(PropTypes.string),
   onToggle: PropTypes.func,

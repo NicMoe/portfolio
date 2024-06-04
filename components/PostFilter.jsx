@@ -36,7 +36,7 @@ const Input = styled.input`
     }
   }
 `
-export default function ProjectFilter({
+export default function PostFilter({
   children,
   selected = false,
   onToggle = () => {},
@@ -68,7 +68,7 @@ export default function ProjectFilter({
   )
 }
 
-ProjectFilter.propTypes = {
+PostFilter.propTypes = {
   children: PropTypes.node,
   selected: PropTypes.bool,
   onToggle: PropTypes.func,

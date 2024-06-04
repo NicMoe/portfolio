@@ -1,29 +1,29 @@
 import PropTypes from 'prop-types'
-import ProjectCardsGrid from '../../components/ProjectCardsGrid'
-import { getAllProjects } from '../../lib/projects'
+import PostCardsGrid from '../../components/PostCardsGrid'
+import { getAllPosts } from '../../lib/posts'
 
 export async function getStaticProps() {
-  const projects = getAllProjects()
+  const posts = getAllPosts()
     .map(({ frontmatter, slug }) => ({
       ...frontmatter,
       slug,
     }))
-    .filter(project => project.dateId)
+    .filter(post => post.dateId)
     .sort((a, b) => b.dateId.localeCompare(a.dateId));
 
   return {
     props: {
-      projects,
+      posts,
     },
   };
 }
 
-export default function ProjectsPage({ projects = [] }) {
-  return <ProjectCardsGrid projects={projects} showFilters />;
+export default function PostsPage({ posts = [] }) {
+  return <PostCardsGrid posts={posts} showFilters />;
 }
 
-ProjectsPage.propTypes = {
-  projects: PropTypes.arrayOf(
+PostsPage.propTypes = {
+  posts: PropTypes.arrayOf(
     PropTypes.shape({
       slug: PropTypes.string,
       title: PropTypes.string,

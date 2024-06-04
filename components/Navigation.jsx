@@ -41,11 +41,11 @@ export default function Navigation() {
     <List>
       <li>
         <NavLink
-          href="/projects"
-          active={router.route.includes('projects') ? 'true' : undefined}
+          href="/posts"
+          active={router.route.includes('posts') ? 'true' : undefined}
           $backgroundColor="var(--theme-primary)"
         >
-          Projects
+          Posts
         </NavLink>
       </li>
 

@@ -13,16 +13,16 @@ export default function AboutPage() {
         <p>
           I&apos;m a data scientist with a decade of experience supporting real
           world data projects by{' '}
-          <StyledLink href="/projects/bee-swarm-for-distributions">
+          <StyledLink href="/posts/bee-swarm-for-distributions">
             building analytics and visualization software
           </StyledLink>{' '}
           in health tech and for public health initiatives. I&apos;m passionate
           about{' '}
-          <StyledLink href="/projects/aggregates-with-missing-data">
+          <StyledLink href="/posts/aggregates-with-missing-data">
             clear communication of data processes
           </StyledLink>{' '}
           and{' '}
-          <StyledLink href="/projects/public-safety-versus-itself">
+          <StyledLink href="/posts/public-safety-versus-itself">
             research findings
           </StyledLink>
           .

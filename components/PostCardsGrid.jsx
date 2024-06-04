@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import LayoutContainer from './LayoutContainer'
 import TitledContent from './TitledContent'
-import ProjectCard from './ProjectCard'
-import ProjectFilterList from './ProjectFilterList'
+import PostCard from './PostCard'
+import PostFilterList from './PostFilterList'
 import Button from './Button'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
@@ -38,9 +38,9 @@ const Label = styled.span`
   margin-inline-end: 0.9em;
 `
 
-export default function ProjectCardsGrid({
-  heading = 'Projects',
-  projects = [],
+export default function PostCardsGrid({
+  heading = 'Posts',
+  posts = [],
   showFilters,
   seeMoreLink,
 }) {
@@ -79,13 +79,13 @@ export default function ProjectCardsGrid({
     })
   }
 
-  // Filter projects by selected type
-  const projectsByType = selectedType
-    ? projects.filter(project => project.type === selectedType)
-    : projects
+  // Filter posts by selected type
+  const postsByType = selectedType
+    ? posts.filter(post => post.type === selectedType)
+    : posts
 
-  // Extract tags from the filtered projects
-  const tagFilters = projectsByType
+  // Extract tags from the filtered posts
+  const tagFilters = postsByType
     .map(({ tags }) => tags)
     .flat()
     .reduce(
@@ -96,7 +96,7 @@ export default function ProjectCardsGrid({
       {},
     )
 
-  const filteredProjects = projectsByType.filter(
+  const filteredPosts = postsByType.filter(
     ({ tags }) =>
       selectedFilters.length === 0 ||
       tags.some(tag => selectedFilters.includes(tag)),
@@ -104,11 +104,11 @@ export default function ProjectCardsGrid({
 
   return (
     <LayoutContainer>
-      <TitledContent id="projects" heading={heading}>
+      <TitledContent id="posts" heading={heading}>
         {showFilters && (
           <FiltersContainer>
             <div>
-              <Label>Filter by type:</Label>
+              <Label>Filter by post type:</Label>
               {typeFilters.map(type => (
                 <button
                   key={type}
@@ -120,7 +120,7 @@ export default function ProjectCardsGrid({
                 </button>
               ))}
             </div>
-            <ProjectFilterList
+            <PostFilterList
               filters={tagFilters}
               selectedFilters={selectedFilters}
               onToggle={handleFilterToggle}
@@ -129,29 +129,29 @@ export default function ProjectCardsGrid({
           </FiltersContainer>
         )}
         <Grid>
-          {filteredProjects.map(project => (
-            <ProjectCard
-              key={project.slug}
-              id={project.slug}
-              heading={project.name}
-              img={project.thumbnail}
-              url={`/projects/${project.slug}`}
-              tags={project.tags}
-              color={project.color}
+          {filteredPosts.map(post => (
+            <PostCard
+              key={post.slug}
+              id={post.slug}
+              heading={post.name}
+              img={post.thumbnail}
+              url={`/posts/${post.slug}`}
+              tags={post.tags}
+              color={post.color}
             >
-              {project.description}
-            </ProjectCard>
+              {post.description}
+            </PostCard>
           ))}
         </Grid>
         {seeMoreLink && (
           <SeeMoreButtonContainer>
             <SeeMoreButton
               as="a"
-              href={`/projects#${seeMoreLink}`}
+              href={`/posts#${seeMoreLink}`}
               $buttonColor="var(--theme-bg-02)"
               $buttonHoverColor="var(--theme-bg-03)"
             >
-              See more projects
+              See more posts
             </SeeMoreButton>
           </SeeMoreButtonContainer>
         )}
@@ -160,9 +160,9 @@ export default function ProjectCardsGrid({
   );
 }
 
-ProjectCardsGrid.propTypes = {
+PostCardsGrid.propTypes = {
   heading: PropTypes.string,
-  projects: PropTypes.arrayOf(
+  posts: PropTypes.arrayOf(
     PropTypes.shape({
       slug: PropTypes.string,
       title: PropTypes.string,
