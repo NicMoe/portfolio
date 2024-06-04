@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import LayoutContainer from './LayoutContainer'
 import TitledContent from './TitledContent'
 import ProjectCard from './ProjectCard'
@@ -8,7 +9,6 @@ import ProjectFilterList from './ProjectFilterList'
 import Button from './Button'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
-import { useRouter } from 'next/router';
 
 const Grid = styled.div`
   display: grid;
@@ -100,6 +100,7 @@ export default function ProjectCardsGrid({
               {typeFilters.map(type => (
                 <button
                   key={type}
+                  type="button"
                   onClick={() => handleTypeFilterChange(type)}
                   style={{ background: type === selectedType ? 'grey' : 'white' }}
                 >
