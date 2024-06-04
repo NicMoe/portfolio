@@ -21,13 +21,13 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts = [] }) {
-  const featuredPosts = posts.slice(0, 6)
+  const featuredPosts = posts.slice(0, 3)
   return (
     <>
       <Hero />
       <About />
       <PostCardsGrid
-        heading="Featured posts"
+        heading="Featured projects and articles"
         posts={featuredPosts}
         seeMoreLink={featuredPosts[featuredPosts.length - 1].slug}
       />
