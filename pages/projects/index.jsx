@@ -9,17 +9,17 @@ export async function getStaticProps() {
       slug,
     }))
     .filter(project => project.dateId)
-    .sort((a, b) => b.dateId.localeCompare(a.dateId))
+    .sort((a, b) => b.dateId.localeCompare(a.dateId));
 
   return {
     props: {
       projects,
     },
-  }
+  };
 }
 
 export default function ProjectsPage({ projects = [] }) {
-  return <ProjectCardsGrid projects={projects} showFilters />
+  return <ProjectCardsGrid projects={projects} showFilters />;
 }
 
 ProjectsPage.propTypes = {
@@ -29,6 +29,7 @@ ProjectsPage.propTypes = {
       title: PropTypes.string,
       tags: PropTypes.arrayOf(PropTypes.string),
       imgs: PropTypes.arrayOf(PropTypes.string),
+      type: PropTypes.string, // Ensure type is included in prop types
     }),
   ),
-}
+};

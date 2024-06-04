@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LayoutContainer from './LayoutContainer'
 import TitledContent from './TitledContent'
 import ProjectCard from './ProjectCard'
@@ -8,6 +8,7 @@ import ProjectFilterList from './ProjectFilterList'
 import Button from './Button'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
+import { useRouter } from 'next/router';
 
 const Grid = styled.div`
   display: grid;
@@ -31,50 +32,81 @@ const SeeMoreButton = styled(Button)`
   ${getResponseTypeStyle(Size.h5)}
 `
 
+const Label = styled.span`
+  font-weight: 400;
+  white-space: nowrap;
+  margin-inline-end: 0.9em;
+`
+
 export default function ProjectCardsGrid({
   heading = 'Projects',
   projects = [],
   showFilters,
   seeMoreLink,
 }) {
-  const [selectedFilters, setSelectedFilters] = useState([])
+  const router = useRouter();
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
+  useEffect(() => {
+    if (router.query.type) {
+      setSelectedType(router.query.type);
+    }
+    if (router.query.tags) {
+      setSelectedFilters(router.query.tags.split(','));
+    }
+  }, [router.query]);
+
+  const typeFilters = ['project', 'post'];
   const tagFilters = projects
     .map(({ tags }) => tags)
     .flat()
-    .reduce(
-      (tagsObj, tag) => ({
-        ...tagsObj,
+    .reduce((tagsObj, tag) => ({
+      ...tagsObj,
+      [tag]: (tagsObj[tag] || 0) + 1,
+    }), {});
 
-        [tag]: (tagsObj[tag] || 0) + 1,
-      }),
-      {},
-    )
+  const filteredProjects = projects.filter(({ type, tags }) =>
+    (selectedType ? type === selectedType : true) &&
+    (selectedFilters.length > 0 ? tags.some(tag => selectedFilters.includes(tag)) : true)
+  );
 
-  const filteredProjects =
-    selectedFilters.length > 0
-      ? projects.filter(({ tags }) =>
-          tags.some(tag => selectedFilters.includes(tag)),
-        )
-      : projects
+  const handleTypeFilterChange = (type) => {
+    setSelectedType(type);
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, type },
+    });
+  };
 
-  const descendingProjects = filteredProjects.sort((a, b) =>
-    b.dateId.localeCompare(a.dateId),
-  )
-
-  const handleFilterToggle = name => {
-    if (selectedFilters.includes(name)) {
-      setSelectedFilters(val => val.filter(filter => filter !== name))
-    } else {
-      setSelectedFilters(val => [...val, name])
-    }
-  }
+  const handleFilterToggle = (name) => {
+    const updatedFilters = selectedFilters.includes(name)
+      ? selectedFilters.filter(filter => filter !== name)
+      : [...selectedFilters, name];
+    setSelectedFilters(updatedFilters);
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, tags: updatedFilters.join(',') },
+    });
+  };
 
   return (
     <LayoutContainer>
       <TitledContent id="projects" heading={heading}>
         {showFilters && (
           <FiltersContainer>
+            <div>
+              <Label>Filter by type:</Label>
+              {typeFilters.map(type => (
+                <button
+                  key={type}
+                  onClick={() => handleTypeFilterChange(type)}
+                  style={{ background: type === selectedType ? 'grey' : 'white' }}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
             <ProjectFilterList
               filters={tagFilters}
               selectedFilters={selectedFilters}
@@ -84,7 +116,7 @@ export default function ProjectCardsGrid({
           </FiltersContainer>
         )}
         <Grid>
-          {descendingProjects.map(project => (
+          {filteredProjects.map(project => (
             <ProjectCard
               key={project.slug}
               id={project.slug}
@@ -98,7 +130,6 @@ export default function ProjectCardsGrid({
             </ProjectCard>
           ))}
         </Grid>
-
         {seeMoreLink && (
           <SeeMoreButtonContainer>
             <SeeMoreButton
@@ -113,7 +144,7 @@ export default function ProjectCardsGrid({
         )}
       </TitledContent>
     </LayoutContainer>
-  )
+  );
 }
 
 ProjectCardsGrid.propTypes = {
@@ -122,6 +153,7 @@ ProjectCardsGrid.propTypes = {
     PropTypes.shape({
       slug: PropTypes.string,
       title: PropTypes.string,
+      type: PropTypes.string,
       tags: PropTypes.arrayOf(PropTypes.string),
       thumbnail: PropTypes.string,
       imgs: PropTypes.arrayOf(PropTypes.string),
@@ -131,4 +163,4 @@ ProjectCardsGrid.propTypes = {
   ),
   showFilters: PropTypes.bool,
   seeMoreLink: PropTypes.string,
-}
+};
