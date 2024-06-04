@@ -6,7 +6,7 @@ import LayoutContainer from './LayoutContainer'
 import TitledContent from './TitledContent'
 import PostCard from './PostCard'
 import PostFilterList from './PostFilterList'
-import Button from './Button'
+import StyledLink, { styles } from './StyledLink'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
 
@@ -28,8 +28,9 @@ const SeeMoreButtonContainer = styled.div`
   }
 `
 
-const SeeMoreButton = styled(Button)`
+const SeeMoreButton = styled(StyledLink)`
   ${getResponseTypeStyle(Size.h5)}
+  ${styles}
 `
 
 const Label = styled.span`
@@ -146,10 +147,8 @@ export default function PostCardsGrid({
         {seeMoreLink && (
           <SeeMoreButtonContainer>
             <SeeMoreButton
-              as="a"
               href={`/posts#${seeMoreLink}`}
-              $buttonColor="var(--theme-bg-02)"
-              $buttonHoverColor="var(--theme-bg-03)"
+              $backgroundColor="var(--theme-bg-02)"
             >
               See more posts
             </SeeMoreButton>

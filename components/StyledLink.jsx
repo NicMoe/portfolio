@@ -3,8 +3,15 @@ import styled, { css } from 'styled-components'
 
 export const hoverStyles = css`
   background-size: 100% 100%;
-  color: ${({ $backgroundColor }) =>
-    $backgroundColor ? 'var(--theme-bg-03)' : 'var(--theme-primary)'};
+  color: ${({ $backgroundColor }) => {
+    if ($backgroundColor === 'var(--theme-bg-02)') {
+      return 'var(--theme-text-02)';
+    }
+    if ($backgroundColor) {
+      return 'var(--theme-bg-03)';
+    }
+    return 'var(--theme-primary)';
+  }};
 `
 
 export const styles = css`
