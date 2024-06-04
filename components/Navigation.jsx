@@ -37,15 +37,26 @@ const NavLink = styled(StyledLink)`
 
 export default function Navigation() {
   const router = useRouter()
+  const { query } = router;
   return (
     <List>
       <li>
         <NavLink
-          href="/posts"
-          active={router.route.includes('posts') ? 'true' : undefined}
+          href="/posts?type=project"
+          active={query.type === 'project' ? 'true' : undefined}
           $backgroundColor="var(--theme-primary)"
         >
-          Posts
+          Projects
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          href="/posts?type=article"
+          active={query.type === 'article' ? 'true' : undefined}
+          $backgroundColor="var(--theme-primary)"
+        >
+          Articles
         </NavLink>
       </li>
 
