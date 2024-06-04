@@ -26,6 +26,8 @@ const Container = styled(Link)`
   display: flex;
   flex-flow: column;
   transition: transform 200ms ease-in-out;
+  position: relative;
+  overflow: hidden;
 
   &:focus {
     outline: 2px solid var(--theme-primary);
@@ -40,6 +42,10 @@ const Container = styled(Link)`
     ${ReadMoreButton} {
       ${hoverStyles}
     }
+
+    img {
+      transform: scale(1.05);
+    }
   }
 `
 const Header = styled.header``
@@ -50,6 +56,10 @@ const ImageContainer = styled.div`
   margin-block-end: 1.3em;
   background: ${props => props.color || 'var(--theme-bg-04)'};
   position: relative;
+
+  img {
+    transition: transform 0.3s ease;
+  }
 `
 
 const Heading = styled.h2`
@@ -89,7 +99,7 @@ export default function TitledContent({
       <Header>
         <ImageContainer color={color}>
           {img && (
-            <Image src={`/posts/${img}`} layout="fill" objectFit="contain" />
+            <Image src={`/posts/${img}`} layout="fill" objectFit="cover" />
           )}
         </ImageContainer>
         <Heading>{heading}</Heading>
