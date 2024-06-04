@@ -57,7 +57,7 @@ export default function ProjectCardsGrid({
     }
   }, [router.query]);
 
-  const typeFilters = ['project', 'post'];
+  const typeFilters = ['project', 'article'];
 
   const handleTypeFilterChange = type => {
     setSelectedType(type)
