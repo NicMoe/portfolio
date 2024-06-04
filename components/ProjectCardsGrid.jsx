@@ -58,37 +58,49 @@ export default function ProjectCardsGrid({
   }, [router.query]);
 
   const typeFilters = ['project', 'post'];
-  const tagFilters = projects
-    .map(({ tags }) => tags)
-    .flat()
-    .reduce((tagsObj, tag) => ({
-      ...tagsObj,
-      [tag]: (tagsObj[tag] || 0) + 1,
-    }), {});
 
-  const filteredProjects = projects.filter(({ type, tags }) =>
-    (selectedType ? type === selectedType : true) &&
-    (selectedFilters.length > 0 ? tags.some(tag => selectedFilters.includes(tag)) : true)
-  );
-
-  const handleTypeFilterChange = (type) => {
-    setSelectedType(type);
+  const handleTypeFilterChange = type => {
+    setSelectedType(type)
+    setSelectedFilters([]) // Reset tag filters when type changes
     router.push({
       pathname: router.pathname,
-      query: { ...router.query, type },
-    });
-  };
+      query: { ...router.query, type, tags: '' },
+    })
+  }
 
-  const handleFilterToggle = (name) => {
+  const handleFilterToggle = name => {
     const updatedFilters = selectedFilters.includes(name)
       ? selectedFilters.filter(filter => filter !== name)
-      : [...selectedFilters, name];
-    setSelectedFilters(updatedFilters);
+      : [...selectedFilters, name]
+    setSelectedFilters(updatedFilters)
     router.push({
       pathname: router.pathname,
       query: { ...router.query, tags: updatedFilters.join(',') },
-    });
-  };
+    })
+  }
+
+  // Filter projects by selected type
+  const projectsByType = selectedType
+    ? projects.filter(project => project.type === selectedType)
+    : projects
+
+  // Extract tags from the filtered projects
+  const tagFilters = projectsByType
+    .map(({ tags }) => tags)
+    .flat()
+    .reduce(
+      (tagsObj, tag) => ({
+        ...tagsObj,
+        [tag]: (tagsObj[tag] || 0) + 1,
+      }),
+      {},
+    )
+
+  const filteredProjects = projectsByType.filter(
+    ({ tags }) =>
+      selectedFilters.length === 0 ||
+      tags.some(tag => selectedFilters.includes(tag)),
+  )
 
   return (
     <LayoutContainer>

@@ -27,9 +27,9 @@ ProjectsPage.propTypes = {
     PropTypes.shape({
       slug: PropTypes.string,
       title: PropTypes.string,
+      type: PropTypes.string,
       tags: PropTypes.arrayOf(PropTypes.string),
       imgs: PropTypes.arrayOf(PropTypes.string),
-      type: PropTypes.string, // Ensure type is included in prop types
     }),
   ),
 };
