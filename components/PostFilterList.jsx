@@ -39,19 +39,23 @@ const Count = styled.span`
   ${getResponseTypeStyle(Size.small)};
 `
 
-const ToggleButton = styled(Button)`
-  margin-left: 1em;
-  font-weight: 400;
-  color: var(--theme-bg-04);
-  background: none;
-  border: none;
+const ToggleButton = styled.button`
+  border: 1px solid var(--theme-bg-02);
+  color: var(--theme-bg-02);
+  background: var(--theme-bg-01);
+  display: inline-block;
+  font-size: 1.0em;
+  padding: 0.3em 1.0em;
+  border-radius: 0.2em;
+  margin-block-end: 0.7em;
+  margin-inline-end: 0.7em;
   cursor: pointer;
 
   &:hover {
-    color: var(--theme-bg-04);
-    text-decoration: underline;
+    border: 1px solid var(--theme-bg-03);
+    color: var(--theme-bg-03);
   }
-`
+`;
 
 export default function PostFilterList({
   filters = {},

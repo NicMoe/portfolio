@@ -71,6 +71,12 @@ export default function PostCardsGrid({
     border-radius: 0.2em;
     margin-block-end: 0.7em;
     margin-inline-end: 0.7em;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
+      color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
+    }
   `;
 
   const handleTypeFilterChange = type => {
