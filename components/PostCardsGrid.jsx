@@ -79,6 +79,10 @@ export default function PostCardsGrid({
     }
   `;
 
+  PostTypeButton.propTypes = {
+    selected: PropTypes.bool.isRequired,
+  };
+
   const handleTypeFilterChange = type => {
     setSelectedType(type)
     setSelectedFilters([]) // Reset tag filters when type changes
