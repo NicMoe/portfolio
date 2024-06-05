@@ -23,7 +23,7 @@ export default function Navigation() {
       <li>
         <NavLink
           href="/posts?type=Project"
-          active={query.type === 'project' ? 'true' : undefined}
+          active={query.type === 'Project' ? 'true' : undefined}
           $backgroundColor="var(--theme-primary)"
         >
           Projects
@@ -33,7 +33,7 @@ export default function Navigation() {
       <li>
         <NavLink
           href="/posts?type=Article"
-          active={query.type === 'article' ? 'true' : undefined}
+          active={query.type === 'Article' ? 'true' : undefined}
           $backgroundColor="var(--theme-primary)"
         >
           Articles
