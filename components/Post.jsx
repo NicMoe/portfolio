@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { DefaultScale } from '../utils/typography.utils'
 import LayoutContainer from './LayoutContainer'
-import StyledLink, { styles as linkStyles } from './StyledLink'
+import BorderedLink, { styles as linkStyles } from './BorderedLink'
 import TagsList from './TagsList'
 import ImageCarousel from './ImageCarousel'
 
@@ -105,14 +105,14 @@ export default function Post({
       {links.length > 0 && (
         <Links>
           {links.map(link => (
-            <StyledLink
+            <BorderedLink
               key={link.url}
               href={link.url}
               target="_blank"
               rel="noreferrer"
             >
               {link.text}
-            </StyledLink>
+            </BorderedLink>
           ))}
         </Links>
       )}
@@ -123,8 +123,8 @@ export default function Post({
     <>
       <Content>{children}</Content>
       <PostNavigationLinks>
-        {previous && <StyledLink href={previous}>Previous post</StyledLink>}
-        {next && <StyledLink href={next}>Next post</StyledLink>}
+        {previous && <BorderedLink href={previous}>Previous post</BorderedLink>}
+        {next && <BorderedLink href={next}>Next post</BorderedLink>}
       </PostNavigationLinks>
     </>
   )

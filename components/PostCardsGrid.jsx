@@ -6,7 +6,7 @@ import LayoutContainer from './LayoutContainer'
 import TitledContent from './TitledContent'
 import PostCard from './PostCard'
 import PostFilterList from './PostFilterList'
-import StyledLink, { styles } from './StyledLink'
+import BorderedLink from './BorderedLink'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
 
@@ -23,14 +23,15 @@ const FiltersContainer = styled.div`
 `
 
 const SeeMoreButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
   ${mediaQuery(Breakpoint.sm)} {
     text-align: center;
   }
 `
 
-const SeeMoreButton = styled(StyledLink)`
+const SeeMoreButton = styled(BorderedLink)`
   ${getResponseTypeStyle(Size.h5)}
-  ${styles}
 `
 
 const Label = styled.span`
