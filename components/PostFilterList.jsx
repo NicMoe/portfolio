@@ -45,7 +45,7 @@ const ToggleButton = styled.button`
   background: var(--theme-bg-01);
   display: inline-block;
   font-size: 1.0em;
-  padding: 0.3em 1.0em;
+  padding: 0em 0.5em;
   border-radius: 0.2em;
   margin-block-end: 0.7em;
   margin-inline-end: 0.7em;
