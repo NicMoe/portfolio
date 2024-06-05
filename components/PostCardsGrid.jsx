@@ -40,6 +40,35 @@ const Label = styled.span`
   margin-inline-end: 0.9em;
 `
 
+const StyledPostTypeButton = styled.button`
+  border: 1px solid ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-02)'};
+  color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-02)'};
+  background: ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-01)'};
+  display: inline-block;
+  font-size: 1.0em;
+  padding: 0.3em 1.0em;
+  border-radius: 0.2em;
+  margin-block-end: 0.7em;
+  margin-inline-end: 0.7em;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
+    color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
+  }
+`;
+
+const PostTypeButton = ({ selected, children, ...props }) => (
+  <StyledPostTypeButton selected={selected} {...props}>
+    {children}
+  </StyledPostTypeButton>
+);
+
+PostTypeButton.propTypes = {
+  selected: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
 export default function PostCardsGrid({
   heading = 'Posts',
   posts = [],
@@ -60,28 +89,6 @@ export default function PostCardsGrid({
   }, [router.query]);
 
   const typeFilters = ['project', 'article'];
-
-  const PostTypeButton = styled.button`
-    border: 1px solid ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-02)'};
-    color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-02)'};
-    background: ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-01)'};
-    display: inline-block;
-    font-size: 1.0em;
-    padding: 0.3em 1.0em;
-    border-radius: 0.2em;
-    margin-block-end: 0.7em;
-    margin-inline-end: 0.7em;
-    cursor: pointer;
-
-    &:hover {
-      border: 1px solid ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
-      color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
-    }
-  `;
-
-  PostTypeButton.propTypes = {
-    selected: PropTypes.bool.isRequired,
-  };
 
   const handleTypeFilterChange = type => {
     setSelectedType(type)
