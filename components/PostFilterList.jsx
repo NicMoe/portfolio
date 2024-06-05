@@ -28,12 +28,6 @@ const Label = styled.span`
   margin-inline-end: 0.9em;
 `
 
-const ResetButton = styled(Button)`
-  ${getResponseTypeStyle(Size.small)};
-  padding-block-start: 0.05em;
-  padding-block-end: 0.05em;
-`
-
 const Count = styled.span`
   color: var(--theme-bg-02);
   ${getResponseTypeStyle(Size.small)};
@@ -107,7 +101,7 @@ export default function PostFilterList({
           </ToggleButton>
         )}
         {selectedFilters.length > 0 && (
-          <ResetButton onClick={onReset}>Reset</ResetButton>
+          <ToggleButton onClick={onReset}>Reset</ToggleButton>
         )}
       </List>
     </Container>
