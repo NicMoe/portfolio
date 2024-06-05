@@ -1,42 +1,42 @@
 import PropTypes from 'prop-types'
 import Hero from '../components/Hero'
 import About from '../components/About'
-import ProjectCardsGrid from '../components/ProjectCardsGrid'
-import { getAllProjects } from '../lib/projects'
+import PostCardsGrid from '../components/PostCardsGrid'
+import { getAllPosts } from '../lib/posts'
 
 export async function getStaticProps() {
-  const projects = getAllProjects()
+  const posts = getAllPosts()
     .map(({ frontmatter, slug }) => ({
       ...frontmatter,
       slug,
     }))
-    .filter(project => project.dateId)
+    .filter(post => post.dateId)
     .sort((a, b) => b.dateId.localeCompare(a.dateId))
 
   return {
     props: {
-      projects,
+      posts,
     },
   }
 }
 
-export default function Home({ projects = [] }) {
-  const featuredProjects = projects.slice(0, 6)
+export default function Home({ posts = [] }) {
+  const featuredPosts = posts.slice(0, 3)
   return (
     <>
       <Hero />
       <About />
-      <ProjectCardsGrid
-        heading="Featured projects"
-        projects={featuredProjects}
-        seeMoreLink={featuredProjects[featuredProjects.length - 1].slug}
+      <PostCardsGrid
+        heading="Featured projects and articles"
+        posts={featuredPosts}
+        seeMoreLink={featuredPosts[featuredPosts.length - 1].slug}
       />
     </>
   )
 }
 
 Home.propTypes = {
-  projects: PropTypes.arrayOf(
+  posts: PropTypes.arrayOf(
     PropTypes.shape({
       slug: PropTypes.string,
       title: PropTypes.string,

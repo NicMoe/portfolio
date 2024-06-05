@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import Button from './Button'
-import ProjectFilter from './ProjectFilter'
+import PostFilter from './PostFilter'
 
 const Container = styled.div`
   display: flex;
@@ -39,21 +39,25 @@ const Count = styled.span`
   ${getResponseTypeStyle(Size.small)};
 `
 
-const ToggleButton = styled(Button)`
-  margin-left: 1em;
-  font-weight: 400;
-  color: var(--theme-bg-04);
-  background: none;
-  border: none;
+const ToggleButton = styled.button`
+  border: 1px solid var(--theme-bg-02);
+  color: var(--theme-bg-02);
+  background: var(--theme-bg-01);
+  display: inline-block;
+  font-size: 1.0em;
+  padding: 0.3em 1.0em;
+  border-radius: 0.2em;
+  margin-block-end: 0.7em;
+  margin-inline-end: 0.7em;
   cursor: pointer;
 
   &:hover {
-    color: var(--theme-bg-04);
-    text-decoration: underline;
+    border: 1px solid var(--theme-bg-03);
+    color: var(--theme-bg-03);
   }
-`
+`;
 
-export default function ProjectFilterList({
+export default function PostFilterList({
   filters = {},
   selectedFilters = [],
   onToggle = () => {},
@@ -76,24 +80,24 @@ export default function ProjectFilterList({
           .sort((a, b) => b[1] - a[1])
           .map(([filter, count]) => (
             <li key={filter}>
-              <ProjectFilter
+              <PostFilter
                 selected={selectedFilters.includes(filter)}
                 onToggle={() => onToggle(filter)}
               >
                 {filter} <Count>[{count}]</Count>
-              </ProjectFilter>
+              </PostFilter>
             </li>
           ))}
         {showAllFilters && additionalFilters
           .sort((a, b) => b[1] - a[1])
           .map(([filter, count]) => (
             <li key={filter}>
-              <ProjectFilter
+              <PostFilter
                 selected={selectedFilters.includes(filter)}
                 onToggle={() => onToggle(filter)}
               >
                 {filter} <Count>[{count}]</Count>
-              </ProjectFilter>
+              </PostFilter>
             </li>
           ))}
         {additionalFilters.length > 0 && (
@@ -109,7 +113,7 @@ export default function ProjectFilterList({
   );
 }
 
-ProjectFilterList.propTypes = {
+PostFilterList.propTypes = {
   filters: PropTypes.objectOf(PropTypes.number),
   selectedFilters: PropTypes.arrayOf(PropTypes.string),
   onToggle: PropTypes.func,

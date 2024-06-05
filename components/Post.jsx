@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { DefaultScale } from '../utils/typography.utils'
 import LayoutContainer from './LayoutContainer'
-import StyledLink, { styles as linkStyles } from './StyledLink'
+import BorderedLink, { styles as linkStyles } from './BorderedLink'
 import TagsList from './TagsList'
 import ImageCarousel from './ImageCarousel'
 
@@ -52,7 +52,7 @@ const Content = styled.div`
   }
 `
 
-const ProjectNavigationLinks = styled.div`
+const PostNavigationLinks = styled.div`
   padding-block-start: 2em;
   padding-block-end: 1em;
   display: flex;
@@ -71,7 +71,7 @@ const ProjectNavigationLinks = styled.div`
   }
 `
 
-export default function Project({
+export default function Post({
   imgs = [],
   name = '',
   description = '',
@@ -105,14 +105,14 @@ export default function Project({
       {links.length > 0 && (
         <Links>
           {links.map(link => (
-            <StyledLink
+            <BorderedLink
               key={link.url}
               href={link.url}
               target="_blank"
               rel="noreferrer"
             >
               {link.text}
-            </StyledLink>
+            </BorderedLink>
           ))}
         </Links>
       )}
@@ -122,10 +122,10 @@ export default function Project({
   const bottomContent = (
     <>
       <Content>{children}</Content>
-      <ProjectNavigationLinks>
-        {previous && <StyledLink href={previous}>Previous project</StyledLink>}
-        {next && <StyledLink href={next}>Next project</StyledLink>}
-      </ProjectNavigationLinks>
+      <PostNavigationLinks>
+        {previous && <BorderedLink href={previous}>Previous post</BorderedLink>}
+        {next && <BorderedLink href={next}>Next post</BorderedLink>}
+      </PostNavigationLinks>
     </>
   )
 
@@ -144,7 +144,7 @@ export default function Project({
       <LayoutContainer narrow>{topContent}</LayoutContainer>
       {imgs.length > 0 && (
         <ImageCarousel
-          images={imgs.map(img => `/projects/${img}`)}
+          images={imgs.map(img => `/posts/${img}`)}
           backgroundColor={color || 'var(--theme-bg-04)'}
         />
       )}
@@ -156,7 +156,7 @@ export default function Project({
   )
 }
 
-Project.propTypes = {
+Post.propTypes = {
   imgs: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,
   description: PropTypes.string,

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import LayoutContainer from './LayoutContainer'
-import StyledLink from './StyledLink'
+import BorderedLink from './BorderedLink'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
 
@@ -33,8 +33,10 @@ const Copyright = styled.p`
 `
 
 const Contact = styled.p`
+  display: flex;  
   flex-grow: 1;
   text-align: right;
+  justify-content: right;
 
   > * {
     margin-inline-end: 0.7em;
@@ -57,46 +59,46 @@ export default function Footer() {
           &copy;{new Date().getFullYear()} Nic Moe
         </Copyright>
         <Contact>
-        <StyledLink
+          <BorderedLink
             href="mailto:nicmoe.io@gmail.com"
             target="_blank"
             rel="noreferrer"
             $backgroundColor="var(--theme-primary)"
           >
             Email
-          </StyledLink>{' '}
-          <StyledLink
+          </BorderedLink>{' '}
+          <BorderedLink
             href="https://www.linkedin.com/in/nicwillmoe/"
             target="_blank"
             rel="noreferrer"
             $backgroundColor="var(--theme-primary)"
           >
             LinkedIn
-          </StyledLink>{' '}
-          <StyledLink
+          </BorderedLink>{' '}
+          <BorderedLink
             href="https://github.com/NicMoe/"
             target="_blank"
             rel="noreferrer"
             $backgroundColor="var(--theme-primary)"
           >
             GitHub
-          </StyledLink>{' '}
-          <StyledLink
+          </BorderedLink>{' '}
+          <BorderedLink
             href="https://www.instagram.com/nicwillmoe/"
             target="_blank"
             rel="noreferrer"
             $backgroundColor="var(--theme-primary)"
           >
             Instagram
-          </StyledLink>{' '}
-          <StyledLink
+          </BorderedLink>{' '}
+          <BorderedLink
             href="https://bsky.app/profile/nicmoe.bsky.social"
             target="_blank"
             rel="noreferrer"
             $backgroundColor="var(--theme-primary)"
           >
             Bluesky
-          </StyledLink>
+          </BorderedLink>
         </Contact>
       </Container>
     </LayoutContainer>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Breakpoint, mediaQuery } from '../utils/responsive.utils'
-import StyledLink from './StyledLink'
+import BorderedLink from './BorderedLink'
 import LayoutContainer from './LayoutContainer'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
 
@@ -36,7 +36,7 @@ const Navigation = styled.ul`
 `
 
 const NavigationItem = styled.li``
-const NavigationLink = styled(StyledLink)``
+const NavigationLink = styled(BorderedLink)``
 
 export default function Hero() {
   return (
@@ -52,7 +52,7 @@ export default function Hero() {
         <Navigation>
           <NavigationItem>
             <NavigationLink
-              href="/projects"
+              href="/posts"
               $backgroundColor="var(--theme-primary)"
             >
               See my work
