@@ -54,7 +54,7 @@ const StyledPostTypeButton = styled.button`
   font: inherit;
 
   &:hover {
-    border: 1px solid ${props => props.selected ? 'var(--theme-bg-02)' : 'var(--theme-bg-03)'};
+    border: 1px solid ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-03)'};
     color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
   }
 `;
