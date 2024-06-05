@@ -50,6 +50,7 @@ const ToggleButton = styled.button`
   margin-block-end: 0.7em;
   margin-inline-end: 0.7em;
   cursor: pointer;
+  font: inherit;
 
   &:hover {
     border: 1px solid var(--theme-bg-03);
@@ -102,7 +103,7 @@ export default function PostFilterList({
           ))}
         {additionalFilters.length > 0 && (
           <ToggleButton onClick={() => setShowAllFilters(!showAllFilters)}>
-            {showAllFilters ? 'limit filter options' : '+ show more filters'}
+            {showAllFilters ? 'Limit filter options' : '+ Show more filters'}
           </ToggleButton>
         )}
         {selectedFilters.length > 0 && (
