@@ -61,6 +61,18 @@ export default function PostCardsGrid({
 
   const typeFilters = ['project', 'article'];
 
+  const PostTypeButton = styled.button`
+    border: 1px solid ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-02)'};
+    color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-02)'};
+    background: ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-01)'};
+    display: inline-block;
+    font-size: 1.0em;
+    padding: 0.3em 1.0em;
+    border-radius: 0.2em;
+    margin-block-end: 0.7em;
+    margin-inline-end: 0.7em;
+  `;
+
   const handleTypeFilterChange = type => {
     setSelectedType(type)
     setSelectedFilters([]) // Reset tag filters when type changes
@@ -112,14 +124,14 @@ export default function PostCardsGrid({
             <div>
               <Label>Filter by post type:</Label>
               {typeFilters.map(type => (
-                <button
+                <PostTypeButton
                   key={type}
                   type="button"
                   onClick={() => handleTypeFilterChange(type)}
-                  style={{ background: type === selectedType ? 'grey' : 'white' }}
+                  selected={type === selectedType}
                 >
                   {type}
-                </button>
+                </PostTypeButton>
               ))}
             </div>
             <PostFilterList
