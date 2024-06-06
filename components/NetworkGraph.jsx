@@ -14,7 +14,9 @@ const NetworkGraph = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
-        const numNodes = 120;
+        const { width, height } = canvas.getBoundingClientRect();
+        const canvasSize = width * height;
+        const numNodes = canvasSize / 4000;
         const maxDistance = 80;
 
         const initializeNodes = () => {
