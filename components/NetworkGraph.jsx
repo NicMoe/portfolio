@@ -39,7 +39,7 @@ const NetworkGraph = () => {
     const draw = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     nodes.current.forEach((node, i) => {
-        const nodeFadeFactor = Math.pow((node.x / canvas.width) - 0.25, 2); // Shift focus more to the right
+        const nodeFadeFactor = ((node.x / canvas.width) - 0.25) ** 2; // Shift focus more to the right
         const nodeAlpha = Math.min(
         nodeFadeFactor,
         (canvas.width - node.x) / canvas.width,
@@ -55,7 +55,7 @@ const NetworkGraph = () => {
         if (distance(node, otherNode) < maxDistance) {
             const edgeFadeFactor = Math.min(
             nodeFadeFactor,
-            Math.pow((otherNode.x / canvas.width) - 0.25, 2), // Shift focus more to the right
+            ((otherNode.x / canvas.width) - 0.25) ** 2, // Shift focus more to the right
             (canvas.width - node.x) / canvas.width,
             (canvas.width - otherNode.x) / canvas.width,
             node.y / canvas.height,
