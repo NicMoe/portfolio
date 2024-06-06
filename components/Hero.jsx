@@ -16,7 +16,7 @@ const OuterContainer = styled.div`
 `
 
 const TextContainer = styled.div`
-  width: 65%;
+  width: 100%;
   box-sizing: border-box;
 `
 
