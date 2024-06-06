@@ -8,6 +8,7 @@ const BackgroundContainer = styled.div`
   background-color: ${props => props.$backgroundColor};
   color: ${props => props.$color};
   inline-size: 100%;
+  position: relative; /* Added to position NetworkGraphContainer */
 `
 const Container = styled.div`
   inline-size: ${props => (props.$narrow ? '38rem' : '100%')};
