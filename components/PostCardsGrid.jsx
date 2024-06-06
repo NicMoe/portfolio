@@ -46,14 +46,15 @@ const StyledPostTypeButton = styled.button`
   background: ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-01)'};
   display: inline-block;
   font-size: 1.0em;
-  padding: 0.3em 1.0em;
+  padding: 0em 0.5em;
   border-radius: 0.2em;
   margin-block-end: 0.7em;
   margin-inline-end: 0.7em;
-  cursor: pointer;
+  cursor: ${props => props.selected ? 'auto' : 'pointer'};
+  font: inherit;
 
   &:hover {
-    border: 1px solid ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
+    border: 1px solid ${props => props.selected ? 'var(--theme-bg-03)' : 'var(--theme-bg-03)'};
     color: ${props => props.selected ? 'var(--theme-primary)' : 'var(--theme-bg-03)'};
   }
 `;
@@ -88,7 +89,7 @@ export default function PostCardsGrid({
     }
   }, [router.query]);
 
-  const typeFilters = ['project', 'article'];
+  const typeFilters = ['Project', 'Article'];
 
   const handleTypeFilterChange = type => {
     setSelectedType(type)

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { getResponseTypeStyle, Size } from '../utils/typography.utils'
-import Button from './Button'
 import PostFilter from './PostFilter'
 
 const Container = styled.div`
@@ -28,12 +27,6 @@ const Label = styled.span`
   margin-inline-end: 0.9em;
 `
 
-const ResetButton = styled(Button)`
-  ${getResponseTypeStyle(Size.small)};
-  padding-block-start: 0.05em;
-  padding-block-end: 0.05em;
-`
-
 const Count = styled.span`
   color: var(--theme-bg-02);
   ${getResponseTypeStyle(Size.small)};
@@ -45,11 +38,12 @@ const ToggleButton = styled.button`
   background: var(--theme-bg-01);
   display: inline-block;
   font-size: 1.0em;
-  padding: 0.3em 1.0em;
+  padding: 0em 0.5em;
   border-radius: 0.2em;
   margin-block-end: 0.7em;
   margin-inline-end: 0.7em;
   cursor: pointer;
+  font: inherit;
 
   &:hover {
     border: 1px solid var(--theme-bg-03);
@@ -102,11 +96,11 @@ export default function PostFilterList({
           ))}
         {additionalFilters.length > 0 && (
           <ToggleButton onClick={() => setShowAllFilters(!showAllFilters)}>
-            {showAllFilters ? 'limit filter options' : '+ show more filters'}
+            {showAllFilters ? 'Limit filter options' : '+ Show more filters'}
           </ToggleButton>
         )}
         {selectedFilters.length > 0 && (
-          <ResetButton onClick={onReset}>Reset</ResetButton>
+          <ToggleButton onClick={onReset}>Reset</ToggleButton>
         )}
       </List>
     </Container>
