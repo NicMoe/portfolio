@@ -3,11 +3,17 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import Post from '../../components/Post'
 import { getAllPosts, getPostBySlug } from '../../lib/posts'
+import CircleSizes from '../../components/CircleSizes'
 
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.id)
 
-  const mdxSource = await serialize(post.content || '')
+  const mdxSource = await serialize(post.content || '', {
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [],
+    },
+  });
 
   return {
     props: {
@@ -30,11 +36,15 @@ export async function getStaticPaths() {
   }
 }
 
+const components = {
+  CircleSizes,
+};
+
 export default function PostPage({ mdxSource, ...rest }) {
   return (
     <main>
       <Post {...rest}>
-        <MDXRemote {...mdxSource} />
+        <MDXRemote {...mdxSource} components={components} />
       </Post>
     </main>
   )
