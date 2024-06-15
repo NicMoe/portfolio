@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint \"**/*.js?(x)\""
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint \"**/*.js?(x)\"",
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,16 +19,24 @@
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.3",
     "@types/mdx": "^2.0.13",
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "d3": "^7.9.0",
+    "dotenv": "^16.4.5",
     "eslint-config-next": "^14.2.3",
+    "express": "^4.19.2",
     "gray-matter": "^4.0.2",
-    "next": "^14.2.3",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
+    "next": "^14.2.4",
     "next-mdx-remote": "^4.4.1",
     "prop-types": "^15.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remark": "^13.0.0",
     "remark-html": "^13.0.2",
+    "request-ip": "^3.3.0",
     "styled-components": "^6.1.11",
     "throttle-debounce": "^3.0.1"
   },

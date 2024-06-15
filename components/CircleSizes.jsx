@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import axios from 'axios';
 
 const width = 200;
 const height = 200;
@@ -17,7 +19,6 @@ const units = [
   { unit: "dogs", phrase: "The red circle represents VALUE dogs - how many dogs does the blue circle represent?" }
 ];
 
-// Function to generate random circles ensuring they do not overlap
 const generateRandomCircles = () => {
   const radius1 = Math.random() * 30 + 20; // Radius between 20 and 50
   const radius2 = Math.random() * 30 + 20;
@@ -58,7 +59,7 @@ const getUnit = (phrase) => {
   return unitObj ? unitObj.unit : "";
 };
 
-const InteractiveD3 = () => {
+const InteractiveD3 = ({ postId }) => {
   const svgRef = useRef();
   const resultRefs = [useRef(), useRef(), useRef()];
   const [currentChart, setCurrentChart] = useState(0);
@@ -83,7 +84,30 @@ const InteractiveD3 = () => {
     setGuesses(newGuesses);
   };
 
-  const handleNext = () => {
+  const calculateBlueCircleValues = () => 
+    circleData.map((circles, index) => {
+      const redArea = Math.PI * (circles[0].r ** 2);
+      const blueArea = Math.PI * (circles[1].r ** 2);
+      return Math.round((blueArea / redArea) * redCircleValues[index]);
+    });
+
+  const submitGuesses = async (blueCircleValues) => {
+    try {
+      // const response =
+      await axios.post('/api/save-guesses', {
+        postId,
+        guesses,
+        circleData,
+        redCircleValues,
+        blueCircleValues,
+      });
+      // console.log(response.data.message);
+    } catch (error) {
+      // console.error('Error saving guesses:', error);
+    }
+  };
+
+  const handleNext = async () => {
     if (currentChart < 2) {
       const newCircleData = [...circleData, generateRandomCircles()];
       const newRedCircleValues = [...redCircleValues, Math.floor(Math.random() * 90) + 10];
@@ -91,6 +115,8 @@ const InteractiveD3 = () => {
       setRedCircleValues(newRedCircleValues);
       setCurrentChart(currentChart + 1);
     } else {
+      const blueCircleValues = calculateBlueCircleValues();
+      await submitGuesses(blueCircleValues);
       setShowResults(true);
     }
   };
@@ -133,6 +159,8 @@ const InteractiveD3 = () => {
         <p>{randomPhrases[currentChart].replace("VALUE", redCircleValues[currentChart])}</p>
         <input
           type="number"
+          id={`guess-${currentChart}`}
+          name={`guess-${currentChart}`}
           value={guesses[currentChart]}
           onChange={(e) => handleGuessChange(e.target.value)}
           placeholder="Enter your guess"
@@ -141,6 +169,10 @@ const InteractiveD3 = () => {
       </div>
     </div>
   );
+};
+
+InteractiveD3.propTypes = {
+  postId: PropTypes.string.isRequired,
 };
 
 export default InteractiveD3;

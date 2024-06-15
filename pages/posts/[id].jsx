@@ -19,6 +19,7 @@ export async function getStaticProps({ params }) {
     props: {
       ...post.frontmatter,
       mdxSource,
+      id: params.id,
     },
   }
 }
@@ -36,15 +37,11 @@ export async function getStaticPaths() {
   }
 }
 
-const components = {
-  CircleSizes,
-};
-
-export default function PostPage({ mdxSource, ...rest }) {
+export default function PostPage({ mdxSource, id, ...rest }) {
   return (
     <main>
       <Post {...rest}>
-        <MDXRemote {...mdxSource} components={components} />
+        <MDXRemote {...mdxSource} components={{ CircleSizes: (props) => <CircleSizes {...props} postId={id} /> }} />
       </Post>
     </main>
   )
@@ -52,4 +49,5 @@ export default function PostPage({ mdxSource, ...rest }) {
 
 PostPage.propTypes = {
   mdxSource: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
 }
