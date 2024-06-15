@@ -21,7 +21,10 @@ const units = [
 const generateRandomCircles = () => {
   const radius1 = Math.random() * 30 + 20; // Radius between 20 and 50
   const radius2 = Math.random() * 30 + 20;
-  let x1, y1, x2, y2;
+  let x1;
+  let y1;
+  let x2;
+  let y2;
 
   do {
     x1 = Math.random() * (width - 2 * radius1) + radius1;
@@ -51,8 +54,8 @@ const createChart = (svg, circles) => {
 };
 
 const getUnit = (phrase) => {
-  const unit = units.find(unit => phrase.includes(unit.unit));
-  return unit ? unit.unit : "";
+  const unitObj = units.find(unit => phrase.includes(unit.unit));
+  return unitObj ? unitObj.unit : "";
 };
 
 const InteractiveD3 = () => {
@@ -106,16 +109,16 @@ const InteractiveD3 = () => {
       <div>
         <h2>Results</h2>
         {circleData.map((circles, index) => {
-          const redArea = Math.PI * Math.pow(circles[0].r, 2);
-          const blueArea = Math.PI * Math.pow(circles[1].r, 2);
+          const redArea = Math.PI * (circles[0].r ** 2);
+          const blueArea = Math.PI * (circles[1].r ** 2);
           const relativeBlueValue = Math.round((blueArea / redArea) * redCircleValues[index]);
           const unit = getUnit(randomPhrases[index]);
           return (
-            <div key={index}>
-              <svg ref={resultRefs[index]}></svg>
+            <div key={`result-${circles[0].x}-${circles[0].y}`}>
+              <svg ref={resultRefs[index]} />
               <p>{randomPhrases[index].replace("VALUE", redCircleValues[index])}</p>
-              <p>Your guess: {unit === "$" || unit === "€" ? unit + guesses[index] : guesses[index] + " " + unit}</p>
-              <p>Correct size of blue circle: {unit === "$" || unit === "€" ? unit + relativeBlueValue : relativeBlueValue + " " + unit}</p>
+              <p>Your guess: {unit === "$" || unit === "€" ? `${unit}${guesses[index]}` : `${guesses[index]} ${unit}`}</p>
+              <p>Correct size of blue circle: {unit === "$" || unit === "€" ? `${unit}${relativeBlueValue}` : `${relativeBlueValue} ${unit}`}</p>
             </div>
           );
         })}
@@ -126,7 +129,7 @@ const InteractiveD3 = () => {
   return (
     <div>
       <div>
-        <svg ref={svgRef}></svg>
+        <svg ref={svgRef} />
         <p>{randomPhrases[currentChart].replace("VALUE", redCircleValues[currentChart])}</p>
         <input
           type="number"
@@ -134,7 +137,7 @@ const InteractiveD3 = () => {
           onChange={(e) => handleGuessChange(e.target.value)}
           placeholder="Enter your guess"
         />
-        <button onClick={handleNext}>Next</button>
+        <button type="button" onClick={handleNext}>Next</button>
       </div>
     </div>
   );
